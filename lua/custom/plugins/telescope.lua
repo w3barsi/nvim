@@ -22,8 +22,10 @@ return {
         i = {
           ['<C-u>'] = false,
           ['<C-d>'] = false,
+          ['<C-k>'] = "move_selection_next",
+          ['<C-j>'] = "move_selection_previous",
         },
       },
     },
-  }
+  },
 }
