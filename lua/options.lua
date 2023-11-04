@@ -44,3 +44,4 @@ vim.o.linebreak = true
 vim.o.colorcolumn = '80'
 
 vim.o.splitright = true
+vim.o.swapfile = false
