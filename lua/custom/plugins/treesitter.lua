@@ -10,6 +10,7 @@ return {
   opts = {
     autotag = {
       enable = true,
+      enable_close_on_slash = false,
     },
 
     -- Add languages to be installed here that you want installed for treesitter
