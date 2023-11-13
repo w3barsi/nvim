@@ -82,3 +82,10 @@ vim.keymap.set('n', 'n', 'nzz', opts)
 vim.keymap.set('x', '<leader>p', '"_dP', { silent = true })
 
 vim.keymap.set('n', '<leader><leader>', '<cmd>w! <CR>')
+
+-- Folding Remaps
+
+vim.keymap.set('n', '<leader>]', '<cmd>foldclose<CR>', { desc = 'Close Folds' })
+vim.keymap.set('n', '<leader>[', '<cmd>foldopen<CR>', { desc = 'Open Folds' })
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
