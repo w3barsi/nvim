@@ -22,12 +22,12 @@ local types = require 'luasnip.util.types'
 local conds = require 'luasnip.extras.conditions'
 local conds_expand = require 'luasnip.extras.conditions.expand'
 
-
 vim.keymap.set({ 'i', 's' }, '<C-s>', function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()
   end
 end)
+vim.keymap.set('n', "<Tab>", function() ls.jump( 1) end, {silent = true})
 
 ls.setup {
   history = true,
@@ -44,19 +44,47 @@ ls.setup {
 
 ls.add_snippets('all', {
   s(
-    'us',
-    fmt('const [{}, use{setter}] = useState({})', {
+    { trig = 'us', name = 'useState' },
+    fmt('const [{}, set{setter}] = useStat{}({})', {
       i(1, 'value'),
-      i(2, 'Value'),
+      i(0),
+      i(2, '{InitialValue}'),
       setter = l(l._1:sub(1, 1):upper() .. l._1:sub(2, -1), { 1, 2 }),
     })
   ),
   s(
-    'rfce',
+    { trig = 'usi', name = 'useState + Import' },
+    fmt('const [{}, set{setter}] = useState({})', {
+      i(1, 'value'),
+      i(2, '{InitialValue}'),
+      setter = l(l._1:sub(1, 1):upper() .. l._1:sub(2, -1), { 1, 2 }),
+    })
+  ),
+  s(
+    { trig = 'usi', name = 'useState with Generic' },
+    fmt('const [{}, set{setter}] = useState<{}>({})', {
+      i(1, 'value'),
+      i(2, 'Generic'),
+      i(3, 'InitialValue'),
+      setter = l(l._1:sub(1, 1):upper() .. l._1:sub(2, -1), { 1, 2 }),
+    })
+  ),
+  s(
+    { trig = 'usgi', name = 'useState with Generic + Import' },
+    fmt('const [{}, set{setter}] = useStat{}<{}>({})', {
+      i(1, 'value'),
+      i(0),
+      i(2, 'Generic'),
+      i(3, 'InitialValue'),
+      setter = l(l._1:sub(1, 1):upper() .. l._1:sub(2, -1), { 1, 2 }),
+    })
+  ),
+  s(
+    { trig = 'rafce', name = 'React Arrow Function Component with Export' },
     fmt(
       [[
 			const {} = ({}) => {{
-			    {}
+			  return ({})
 			}}
 			export default {func};
 	    ]],
@@ -68,4 +96,5 @@ ls.add_snippets('all', {
       }
     )
   ),
+  s('clog', fmt('console.log({})', { i(1) })),
 })
