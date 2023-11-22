@@ -16,6 +16,13 @@ return { -- NOTE: First, some plugins that don't require any configuration
   },
 
   {
+    'kdheepak/lazygit.nvim',
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+  },
+  {
     -- 'windwp/nvim-autopairs',
     -- event = 'InsertEnter',
     -- opts = {}, -- this is equalent to setup({}) function

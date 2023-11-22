@@ -89,3 +89,5 @@ vim.keymap.set('n', '<leader>]', '<cmd>foldclose<CR>', { desc = 'Close Folds' })
 vim.keymap.set('n', '<leader>[', '<cmd>foldopen<CR>', { desc = 'Open Folds' })
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+vim.keymap.set('n',"<leader>lg", [[:LazyGit<CR>]], { silent = true })
