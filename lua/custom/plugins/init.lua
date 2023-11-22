@@ -14,7 +14,6 @@ return { -- NOTE: First, some plugins that don't require any configuration
       vim.keymap.set('n', ',r', ":lua require('harpoon.ui').nav_file(4)<CR>", { silent = true })
     end,
   },
-
   {
     'kdheepak/lazygit.nvim',
     -- optional for floating window border decoration
@@ -30,7 +29,9 @@ return { -- NOTE: First, some plugins that don't require any configuration
     -- Optional dependency
     dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
-      require('nvim-autopairs').setup {}
+      require('nvim-autopairs').setup {
+        check_ts = true,
+      }
       -- If you want to automatically add `(` after selecting a function or method
       local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
       local cmp = require 'cmp'
@@ -38,8 +39,6 @@ return { -- NOTE: First, some plugins that don't require any configuration
     end,
   },
   'windwp/nvim-ts-autotag',
-
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -89,17 +88,19 @@ return { -- NOTE: First, some plugins that don't require any configuration
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
+
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+        untracked = { text = '▎' },
       },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
@@ -119,6 +120,14 @@ return { -- NOTE: First, some plugins that don't require any configuration
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_c = {
+          {
+            'filename',
+            path = 1,
+          },
+        },
+      },
     },
   },
 
@@ -128,7 +137,7 @@ return { -- NOTE: First, some plugins that don't require any configuration
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    opts = {},
+    opts = { scope = { enabled = false } },
   },
 
   -- "gc" to comment visual regions/lines
@@ -145,4 +154,3 @@ return { -- NOTE: First, some plugins that don't require any configuration
     },
   },
 }
-
