@@ -45,7 +45,7 @@ ls.setup {
 ls.add_snippets('all', {
   s(
     { trig = 'us', name = 'useState' },
-    fmt('const [{}, set{setter}] = useStat{}({})', {
+    fmt('const [{}, set{setter}] = useState{}({})', {
       i(1, 'value'),
       i(0),
       i(2, '{InitialValue}'),
@@ -71,7 +71,7 @@ ls.add_snippets('all', {
   ),
   s(
     { trig = 'usgi', name = 'useState with Generic + Import' },
-    fmt('const [{}, set{setter}] = useStat{}<{}>({})', {
+    fmt('const [{}, set{setter}] = useState{}<{}>({})', {
       i(1, 'value'),
       i(0),
       i(2, 'Generic'),
