@@ -1,4 +1,5 @@
 return {
+
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
   dependencies = {
@@ -16,16 +17,20 @@ return {
       end,
     },
   },
-  opts = {
-    defaults = {
-      mappings = {
-        i = {
-          ['<C-u>'] = false,
-          ['<C-d>'] = false,
-          -- ['<C-k>'] = 'move_selection_next',
-          -- ['<C-j>'] = 'move_selection_previous',
+  config = function()
+    local actions = require("telescope.actions")
+    require('telescope').setup {
+      defaults = {
+        mappings = {
+          i = {
+            ['<C-u>'] = false,
+            ['<C-d>'] = false,
+            ['<C-j>'] = 'move_selection_next',
+            ['<C-k>'] = 'move_selection_previous',
+            ['<esc>'] = actions.close,
+          },
         },
       },
-    },
-  },
+    }
+  end,
 }
