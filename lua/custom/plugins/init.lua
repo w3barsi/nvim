@@ -4,6 +4,26 @@
 -- See the kickstart.nvim README for more information
 return { -- NOTE: First, some plugins that don't require any configuration
   {
+    'nvim-neo-tree/neo-tree.nvim',
+    version = '*',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      require('neo-tree').setup {
+        filesystem = {
+          follow_current_file = {
+            enabled = true
+          },
+          hijack_netrw_behavior = 'disabled',
+        },
+      }
+    end,
+  },
+
+  {
     'ThePrimeagen/harpoon',
     config = function()
       vim.keymap.set('n', ',a', require('harpoon.mark').add_file, { silent = true })
