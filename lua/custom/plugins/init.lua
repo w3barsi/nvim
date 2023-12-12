@@ -25,14 +25,6 @@ return { -- NOTE: First, some plugins that don't require any configuration
 
   {
     'ThePrimeagen/harpoon',
-    config = function()
-      vim.keymap.set('n', ',a', require('harpoon.mark').add_file, { silent = true })
-      vim.keymap.set('n', ',p', require('harpoon.ui').toggle_quick_menu, { silent = true })
-      vim.keymap.set('n', ',q', ":lua require('harpoon.ui').nav_file(1)<CR>", { silent = true })
-      vim.keymap.set('n', ',w', ":lua require('harpoon.ui').nav_file(2)<CR>", { silent = true })
-      vim.keymap.set('n', ',e', ":lua require('harpoon.ui').nav_file(3)<CR>", { silent = true })
-      vim.keymap.set('n', ',r', ":lua require('harpoon.ui').nav_file(4)<CR>", { silent = true })
-    end,
   },
   {
     'kdheepak/lazygit.nvim',

@@ -93,5 +93,17 @@ vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
 vim.keymap.set("n", "<leader>lg", [[:LazyGit<CR>]], { silent = true })
 
--- Returns
+-- Returns to last selected letter on visual mode yank
 vim.keymap.set("v", "y", "ygv<Esc>")
+
+-- Harpoon Keymaps
+vim.keymap.set("n", ",a", require("harpoon.mark").add_file, { silent = true })
+vim.keymap.set("n", ",p", require("harpoon.ui").toggle_quick_menu, { silent = true })
+vim.keymap.set("n", ",q", ":lua require('harpoon.ui').nav_file(1)<CR>", { silent = true })
+vim.keymap.set("n", ",w", ":lua require('harpoon.ui').nav_file(2)<CR>", { silent = true })
+vim.keymap.set("n", ",e", ":lua require('harpoon.ui').nav_file(3)<CR>", { silent = true })
+vim.keymap.set("n", ",r", ":lua require('harpoon.ui').nav_file(4)<CR>", { silent = true })
+-- -- Open Oil to components dir
+vim.keymap.set("n", ",c", [[:Oil src/app/_components<CR>]], { silent = true })
+
+
