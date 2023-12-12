@@ -97,15 +97,14 @@ vim.keymap.set("n", "<leader>lg", [[:LazyGit<CR>]], { silent = true })
 vim.keymap.set("v", "y", "ygv<Esc>")
 
 -- Harpoon Keymaps
-vim.keymap.set("n", ",a", require("harpoon.mark").add_file, { silent = true })
-vim.keymap.set("n", ",p", require("harpoon.ui").toggle_quick_menu, { silent = true })
-vim.keymap.set("n", ",q", ":lua require('harpoon.ui').nav_file(1)<CR>", { silent = true })
-vim.keymap.set("n", ",w", ":lua require('harpoon.ui').nav_file(2)<CR>", { silent = true })
-vim.keymap.set("n", ",e", ":lua require('harpoon.ui').nav_file(3)<CR>", { silent = true })
-vim.keymap.set("n", ",r", ":lua require('harpoon.ui').nav_file(4)<CR>", { silent = true })
+vim.keymap.set("n", ",a", require("harpoon.mark").add_file, { desc = "Add current buffer to harpoon list", silent = true })
+vim.keymap.set("n", ",p", require("harpoon.ui").toggle_quick_menu, { desc = "Open Harpoon Menu", silent = true })
+vim.keymap.set("n", ",q", ":lua require('harpoon.ui').nav_file(1)<CR>", { desc = "Harpoon to 1", silent = true })
+vim.keymap.set("n", ",w", ":lua require('harpoon.ui').nav_file(2)<CR>", { desc = "Harpoon to 2", silent = true })
+vim.keymap.set("n", ",e", ":lua require('harpoon.ui').nav_file(3)<CR>", { desc = "Harpoon to 3", silent = true })
+vim.keymap.set("n", ",r", ":lua require('harpoon.ui').nav_file(4)<CR>", { desc = "Harpoon to 4", silent = true })
 -- -- Open Oil to components dir
 vim.keymap.set("n", ",c", [[:Oil src/app/_components<CR>]], { silent = true })
-
 
 -- Closes all buffers
 vim.keymap.set("n", "<leader>bd", [[:w | %bd | e# | bd#<CR> | '"zz]], { desc = "[B]uffer [D]elete", silent = true })
