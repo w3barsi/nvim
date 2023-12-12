@@ -107,3 +107,5 @@ vim.keymap.set("n", ",r", ":lua require('harpoon.ui').nav_file(4)<CR>", { silent
 vim.keymap.set("n", ",c", [[:Oil src/app/_components<CR>]], { silent = true })
 
 
+-- Closes all buffers
+vim.keymap.set("n", "<leader>bd", [[:w | %bd | e# | bd#<CR> | '"zz]], { desc = "[B]uffer [D]elete", silent = true })
