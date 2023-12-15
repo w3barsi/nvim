@@ -6,20 +6,20 @@ vim.g.mapleader = " "
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- require('kickstart.plugins.autoformat'),
-  { import = "plugins" },
+    -- require('kickstart.plugins.autoformat'),
+    { import = "plugins" },
 }, {})
 
 -- [[ Setting options ]]
@@ -34,9 +34,9 @@ require("remap")
 -- Enable telescope fzf native, if installed
 
 local function override_groups(groups, overrides)
-  for group, setting in pairs(overrides) do
-    groups[group] = setting
-  end
+    for group, setting in pairs(overrides) do
+        groups[group] = setting
+    end
 end
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

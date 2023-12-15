@@ -12,9 +12,6 @@ return {
         },
     },
 
-    -- Auto closing tags for HTML
-    "windwp/nvim-ts-autotag",
-
     -- Multi Line Editing
     "mg979/vim-visual-multi",
 
@@ -22,7 +19,6 @@ return {
     "ThePrimeagen/harpoon",
 
     -- Git related plugins
-    "kdheepak/lazygit.nvim",
     "tpope/vim-fugitive",
     "tpope/vim-rhubarb",
 
@@ -34,29 +30,13 @@ return {
     "mbbill/undotree",
     "princejoogie/tailwind-highlight.nvim",
 
+    {
+        "kdheepak/lazygit.nvim",
+        event = "VeryLazy",
+    },
+
     -- Useful plugin to show you pending keybinds.
     { "folke/which-key.nvim", opts = {} },
-
-    {
-        -- Set lualine as statusline
-        "nvim-lualine/lualine.nvim",
-        -- See `:help lualine.txt`
-        opts = {
-            options = {
-                icons_enabled = false,
-                component_separators = "|",
-                section_separators = "",
-            },
-            sections = {
-                lualine_c = {
-                    {
-                        "filename",
-                        path = 1,
-                    },
-                },
-            },
-        },
-    },
 
     {
         -- Add indentation guides even on blank lines
@@ -69,4 +49,5 @@ return {
 
     -- "gc" to comment visual regions/lines
     { "numToStr/Comment.nvim", opts = {} },
+    { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" },
 }

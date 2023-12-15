@@ -1,6 +1,11 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "gf", vim.lsp.buf.format)
+vim.keymap.set(
+    "n",
+    "gf",
+    [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
+    { silent = true }
+)
 -- [[ Basic Keymaps ]]
 vim.keymap.set("n", ";;", "A;<Esc>")
 
@@ -20,13 +25,12 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 -- vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set("n", "/", function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-    winblend = 10,
-    previewer = false,
-  }))
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+        winblend = 10,
+        previewer = false,
+    }))
 end, { desc = "[/] Fuzzily search in current buffer" })
-
 
 -- Move Text in Visual Block Up or Down
 vim.keymap.set("n", "<A-k>", [[V:m '<-2<CR>gv=]], { silent = true })
@@ -92,7 +96,12 @@ vim.keymap.set("n", "=", [[:LazyGit<CR>]], { silent = true })
 vim.keymap.set("v", "y", "ygv<Esc>")
 
 -- Harpoon Keymaps
-vim.keymap.set("n", ",a", require("harpoon.mark").add_file, { desc = "Add current buffer to harpoon list", silent = true })
+vim.keymap.set(
+    "n",
+    ",a",
+    require("harpoon.mark").add_file,
+    { desc = "Add current buffer to harpoon list", silent = true }
+)
 vim.keymap.set("n", ",p", require("harpoon.ui").toggle_quick_menu, { desc = "Open Harpoon Menu", silent = true })
 vim.keymap.set("n", ",q", ":lua require('harpoon.ui').nav_file(1)<CR>", { desc = "Harpoon to 1", silent = true })
 vim.keymap.set("n", ",w", ":lua require('harpoon.ui').nav_file(2)<CR>", { desc = "Harpoon to 2", silent = true })

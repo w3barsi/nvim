@@ -2,10 +2,14 @@
 return {
     -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         -- 'nvim-treesitter/nvim-treesitter-context',
         "nvim-treesitter/playground",
+
+        -- Auto closing tags for HTML
+        "windwp/nvim-ts-autotag",
     },
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",

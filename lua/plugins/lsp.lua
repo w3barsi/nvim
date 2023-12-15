@@ -5,9 +5,9 @@ return {
         "williamboman/mason-lspconfig.nvim",
 
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-        { "j-hui/fidget.nvim",       tag = "legacy", opts = {} },
+        { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 
-        { "folke/neodev.nvim",       opts = {} },
+        { "folke/neodev.nvim", opts = {} },
     },
     config = function()
         -- [[ Configure LSP ]]
@@ -19,12 +19,12 @@ return {
             --
             -- In this case, we create a function that lets us more easily define mappings specific
             -- for LSP related items. It sets the mode, buffer and description for us each time.
-            local nmap = function(keys, func, desc)
+            local nmap = function(keys, func, desc, silent)
                 if desc then
                     desc = "LSP: " .. desc
                 end
 
-                vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+                vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc, silent = silent or false })
             end
 
             nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
@@ -32,7 +32,12 @@ return {
 
             nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
             nmap("gs", require("telescope.builtin").git_status, "[G]it [S]tatus")
-            nmap("gf", vim.lsp.buf.format, "[G]oto [F]ormat")
+            nmap(
+                "gf",
+                [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
+                "[G]oto [F]ormat",
+                true
+            )
             nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
             nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
             nmap("gD", vim.lsp.buf.type_definition, "Type [D]efinition")

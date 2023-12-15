@@ -16,55 +16,46 @@
 --         -- and will be executed in order
 --         lua = {
 --           -- "formatter.filetypes.lua" defines default configurations for the
---           -- "lua" filetype
---           require('formatter.filetypes.lua').stylua,
+-- return {
+--     "jose-elias-alvarez/null-ls.nvim",
+--     config = function()
+--         local null_ls = require("null-ls")
 --
---           -- You can also define your own configuration
---           function()
---             -- Supports conditional formatting
---             if util.get_current_buffer_file_name() == 'special.lua' then
---               return nil
---             end
---
---             -- Full specification of configurations is down below and in Vim help
---             -- files
---             return {
---               exe = 'stylua',
---               args = {
---                 '--search-parent-directories',
---                 '--stdin-filepath',
---                 util.escape_path(util.get_current_buffer_file_path()),
---                 '--',
---                 '-',
---               },
---               stdin = true,
---             }
---           end,
---         },
---
---         -- Use the special "*" filetype for defining formatter configurations on
---         -- any filetype
---         ['*'] = {
---           -- "formatter.filetypes.any" defines default configurations for any
---           -- filetype
---           require('formatter.filetypes.any').remove_trailing_whitespace,
---         },
---       },
---     }
---   end,
+--         null_ls.setup({
+--             sources = {
+--                 null_ls.builtins.formatting.stylua,
+--                 null_ls.builtins.formatting.prettierd,
+--                 -- null_ls.builtins.diagnostics.eslint,
+--                 -- null_ls.builtins.completion.spell,
+--             },
+--         })
+--     end,
 -- }
 --
-return {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-        local null_ls = require("null-ls")
 
-        null_ls.setup({
-            sources = {
-                null_ls.builtins.formatting.stylua,
-                null_ls.builtins.formatting.prettierd,
-                -- null_ls.builtins.diagnostics.eslint,
-                -- null_ls.builtins.completion.spell,
+return {
+    "stevearc/conform.nvim",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+    config = function()
+        require("conform").setup({
+            formatters_by_ft = {
+                lua = { "stylua" },
+                javascript = { "prettierd" },
+                typescript = { "prettierd" },
+                javascriptreact = { "prettierd" },
+                typescriptreact = { "prettierd" },
+                css = { "prettierd" },
+                html = { "prettierd" },
+                json = { "prettierd" },
+                yaml = { "prettierd" },
+                markdown = { "prettierd" },
+                graphql = { "prettierd" },
+            },
+            format_on_save = {
+                timeout_ms = 500,
+                async = false,
+                lsp_fallback = true,
             },
         })
     end,
