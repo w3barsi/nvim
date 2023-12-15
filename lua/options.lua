@@ -1,3 +1,4 @@
+-- vim.o.guicursor = ""
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -6,7 +7,6 @@ vim.wo.number = true
 -- Relative Line Numbers
 vim.o.nu = true
 vim.o.rnu = true
-
 -- Enable mouse mode
 vim.o.mouse = "a"
 

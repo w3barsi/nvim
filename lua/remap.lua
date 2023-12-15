@@ -1,3 +1,5 @@
+local opts = { noremap = true, silent = true }
+
 vim.keymap.set("n", "gf", vim.lsp.buf.format)
 -- [[ Basic Keymaps ]]
 vim.keymap.set("n", ";;", "A;<Esc>")
@@ -25,14 +27,6 @@ vim.keymap.set("n", "/", function()
   }))
 end, { desc = "[/] Fuzzily search in current buffer" })
 
-vim.keymap.set("n", "<ieader>gf", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
-vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
-vim.keymap.set("n", "<C-p>", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
-vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
-vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
-vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
-vim.keymap.set("n", "<C-f>", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
-vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- Move Text in Visual Block Up or Down
 vim.keymap.set("n", "<A-k>", [[V:m '<-2<CR>gv=]], { silent = true })
@@ -52,6 +46,7 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnos
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
+-- Split view management
 vim.keymap.set("n", "<leader>h", "<cmd>wincmd h <CR>")
 vim.keymap.set("n", "<leader>j", "<cmd>wincmd j <CR>")
 vim.keymap.set("n", "<leader>k", "<cmd>wincmd k <CR>")
@@ -67,7 +62,6 @@ vim.cmd([[noremap! <C-h> <C-w>]])
 vim.keymap.set("n", "x", [["_x]])
 
 -- Centers C-d and C-u
-local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 vim.keymap.set("n", "{", "{zz", opts)
@@ -92,6 +86,7 @@ vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
 vim.keymap.set("n", "<leader>lg", [[:LazyGit<CR>]], { silent = true })
+vim.keymap.set("n", "=", [[:LazyGit<CR>]], { silent = true })
 
 -- Returns to last selected letter on visual mode yank
 vim.keymap.set("v", "y", "ygv<Esc>")

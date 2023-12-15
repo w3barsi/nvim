@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- require('kickstart.plugins.autoformat'),
-  { import = "custom.plugins" },
+  { import = "plugins" },
 }, {})
 
 -- [[ Setting options ]]
@@ -32,10 +32,6 @@ require("options")
 require("remap")
 
 -- Enable telescope fzf native, if installed
-pcall(require("telescope").load_extension, "fzf")
-
-require("custom.lsp")
-require("custom.cmp")
 
 local function override_groups(groups, overrides)
   for group, setting in pairs(overrides) do
