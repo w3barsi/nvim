@@ -4,9 +4,11 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+
 -- Relative Line Numbers
 vim.o.nu = true
 vim.o.rnu = true
+
 -- Enable mouse mode
 vim.o.mouse = "a"
 
@@ -44,4 +46,9 @@ vim.o.linebreak = true
 vim.o.colorcolumn = "80"
 
 vim.o.splitright = true
+vim.o.splitbelow = true
+
 vim.o.swapfile = false
+
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
