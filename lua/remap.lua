@@ -24,13 +24,13 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- See `:help telescope.builtin`
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 -- vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set("n", "/", function()
-    -- You can pass additional configuration to telescope to change theme, layout, etc.
-    require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-        winblend = 10,
-        previewer = false,
-    }))
-end, { desc = "[/] Fuzzily search in current buffer" })
+-- vim.keymap.set("n", "/", function()
+--     -- You can pass additional configuration to telescope to change theme, layout, etc.
+--     require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+--         winblend = 10,
+--         previewer = false,
+--     }))
+-- end, { desc = "[/] Fuzzily search in current buffer" })
 
 -- Move Text in Visual Block Up or Down
 vim.keymap.set("n", "<A-k>", [[V:m '<-2<CR>gv=]], { silent = true })
@@ -65,7 +65,7 @@ vim.cmd([[noremap! <C-h> <C-w>]])
 -- Makes it so x doesn't touch buffer
 vim.keymap.set("n", "x", [["_x]])
 
--- Centers C-d and C-u
+-- Centers motion keymaps
 vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 vim.keymap.set("n", "{", "{zz", opts)
@@ -94,6 +94,8 @@ vim.keymap.set("n", "=", [[:LazyGit<CR>]], { silent = true })
 
 -- Returns to last selected letter on visual mode yank
 vim.keymap.set("v", "y", "ygv<Esc>")
+vim.keymap.set("n", "V", "v$", opts)
+vim.keymap.set("n", "vv", "V", opts)
 
 -- Harpoon Keymaps
 vim.keymap.set(
