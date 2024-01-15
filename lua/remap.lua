@@ -94,8 +94,8 @@ vim.keymap.set("n", "=", [[:LazyGit<CR>]], { silent = true })
 
 -- Returns to last selected letter on visual mode yank
 vim.keymap.set("v", "y", "ygv<Esc>")
-vim.keymap.set("n", "V", "v$", opts)
-vim.keymap.set("n", "vv", "V", opts)
+-- vim.keymap.set("n", "V", "v$", opts)
+-- vim.keymap.set("n", "vv", "V", opts)
 
 -- Harpoon Keymaps
 vim.keymap.set(
