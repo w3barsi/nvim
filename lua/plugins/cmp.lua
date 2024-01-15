@@ -1,7 +1,7 @@
 return {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter, CmdLineEnter",
+    event = "InsertEnter",
     dependencies = {
         -- Snippet Engine & its associated nvim-cmp source
         "L3MON4D3/LuaSnip",
@@ -13,14 +13,37 @@ return {
 
         -- Adds a number of user-friendly snippets
         "rafamadriz/friendly-snippets",
+        "onsails/lspkind.nvim",
     },
     config = function()
         local cmp = require("cmp")
+        local lspkind = require("lspkind")
         local luasnip = require("luasnip")
         require("luasnip.loaders.from_vscode").lazy_load()
         luasnip.config.setup({})
 
         cmp.setup({
+            --- @diagnostic disable-next-line: missing-fields
+            formatting = {
+                fields = { "kind", "abbr", "menu" },
+                format = function(entry, vim_item)
+                    local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+                    local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                    kind.kind = " " .. (strings[1] or "") .. " "
+                    if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= "" then
+                        vim_item.menu = entry.completion_item.detail
+                    else
+                        vim_item.menu = ({
+                            nvim_lsp = "[LSP]",
+                            luasnip = "[Snippet]",
+                            nvim_lua = "[Lua]",
+                            buffer = "[Buffer]",
+                            path = "[Path]",
+                        })[entry.source.name]
+                    end
+                    return vim_item
+                end,
+            },
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
