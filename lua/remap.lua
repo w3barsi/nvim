@@ -1,11 +1,8 @@
+local ls = require("luasnip")
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set(
-    "n",
-    "gf",
-    [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
-    { silent = true }
-)
+vim.keymap.set("n", "gaf", ':!prettier --write "%" && e<CR>', { silent = true })
+--
 -- [[ Basic Keymaps ]]
 vim.keymap.set("n", ";;", "A;<Esc>")
 
@@ -114,3 +111,15 @@ vim.keymap.set("n", ",c", [[:Oil src/app/_components<CR>]], { silent = true })
 
 -- Closes all buffers
 vim.keymap.set("n", "<leader>bd", [[:w | %bd | e# | bd#<CR> | '"zz]], { desc = "[B]uffer [D]elete", silent = true })
+
+-- Quickfix List Remaps
+vim.keymap.set("n", "qo", ":copen<CR>", { desc = "[Q]uickfix list [O]pen", silent = true })
+vim.keymap.set("n", "qq", ":cclose<CR>", { desc = "[Q]uickfix list [Q]uit", silent = true })
+vim.keymap.set(
+    "n",
+    "qc",
+    ":cexpr []<CR>:cclose<CR>:echo 'Quickfix List Cleared'<CR>",
+    { desc = "[Q]uickfix list [C]lear then close", silent = true }
+)
+vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Quickfix list next", silent = true })
+vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Quickfix list prev", silent = true })
