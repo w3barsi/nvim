@@ -33,6 +33,13 @@
 -- }
 --
 
+-- nmap(
+--     "gf",
+--     [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
+--     "[G]oto [F]ormat",
+--     true
+-- )
+
 return {
     "stevearc/conform.nvim",
     lazy = true,
@@ -52,11 +59,11 @@ return {
                 markdown = { "prettierd" },
                 graphql = { "prettierd" },
             },
-            format_on_save = {
-                timeout_ms = 500,
-                async = false,
-                lsp_fallback = true,
-            },
+            -- format_on_save = {
+            --     timeout_ms = 500,
+            --     async = false,
+            --     lsp_fallback = true,
+            -- },
         })
     end,
 }
