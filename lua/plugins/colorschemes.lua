@@ -19,16 +19,18 @@ return {
                         ["@tag.delimiter"] = { fg = colors.bright_white },
                         TelescopeNormal = { fg = colors.fg, bg = colors.menu },
 
-                        TelescopeResultsTitle= {fg = colors.bg, bg = colors.pink },
+                        TelescopeResultsTitle = { fg = colors.bg, bg = colors.pink },
                         TelescopeResultsBorder = { fg = colors.menu, bg = colors.menu },
 
-                        TelescopePreviewTitle= {fg = colors.bg, bg = colors.pink },
-                        TelescopePreviewBorder = { fg = colors.bg , bg = colors.menu },
+                        TelescopePreviewTitle = { fg = colors.bg, bg = colors.pink },
+                        TelescopePreviewBorder = { fg = colors.bg, bg = colors.menu },
 
-                        TelescopePromptBorder = {fg = colors.bg, bg = colors.pink },
-                        TelescopePromptNormal = {fg = colors.bg, bg = colors.pink },
-                        TelescopePromptTitle = {fg = colors.bg, bg = colors.pink },
-                        TelescopePromptPrefix = {fg = colors.bg, bg = colors.pink },
+                        TelescopePromptBorder = { fg = colors.bg, bg = colors.pink },
+                        TelescopePromptNormal = { fg = colors.bg, bg = colors.pink },
+                        TelescopePromptTitle = { fg = colors.bg, bg = colors.pink },
+                        TelescopePromptPrefix = { fg = colors.bg, bg = colors.pink },
+
+                        YankHighlight = { fg = colors.bg, bg = colors.pink },
                     }
                 end,
             })
