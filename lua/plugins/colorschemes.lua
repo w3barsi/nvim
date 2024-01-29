@@ -17,6 +17,7 @@ return {
                 overrides = function(colors)
                     return {
                         ["@tag.delimiter"] = { fg = colors.bright_white },
+                        NormalFloat = { bg = colors.menu },
                         TelescopeNormal = { fg = colors.fg, bg = colors.menu },
 
                         TelescopeResultsTitle = { fg = colors.bg, bg = colors.pink },

@@ -1,6 +1,8 @@
 local ls = require("luasnip")
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set("n", "]]", "<C-]>", { noremap = true, silent = true , desc = "Go to first Definition"})
+
 vim.keymap.set("n", "gaf", ':!prettier --write "%" && e<CR>', { silent = true })
 --
 -- [[ Basic Keymaps ]]
