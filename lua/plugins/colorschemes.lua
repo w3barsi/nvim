@@ -16,6 +16,7 @@ return {
             dracula.setup({
                 overrides = function(colors)
                     return {
+                        CursorLine = { bg = colors.menu },
                         ["@tag.delimiter"] = { fg = colors.bright_white },
                         NormalFloat = { bg = colors.menu },
                         TelescopeNormal = { fg = colors.fg, bg = colors.menu },

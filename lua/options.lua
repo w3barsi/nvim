@@ -52,3 +52,6 @@ vim.o.swapfile = false
 
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
+
+-- Highlights current line
+vim.o.cursorline = true
