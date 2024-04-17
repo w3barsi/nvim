@@ -8,7 +8,7 @@ return {
         dependencies = { "MunifTanjim/nui.nvim" },
         config = {
             keymaps = {
-                toggle = "<leader>dd", -- default '<leader>dd'
+                toggle = "<leader>dd",           -- default '<leader>dd'
                 go_to_definition = "<leader>dx", -- default '<leader>dx'
             },
         },
@@ -44,7 +44,7 @@ return {
     { "kdheepak/lazygit.nvim", event = "VeryLazy" },
 
     -- Useful plugin to show you pending keybinds.
-    { "folke/which-key.nvim", opts = {} },
+    { "folke/which-key.nvim",  opts = {} },
 
     {
         -- Add indentation guides even on blank lines
@@ -56,6 +56,11 @@ return {
     },
 
     -- "gc" to comment visual regions/lines
-    { "numToStr/Comment.nvim", opts = {} },
+    { "numToStr/Comment.nvim",                       opts = {} },
     { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" },
+    {
+        "NStefan002/screenkey.nvim",
+        cmd = "Screenkey",
+        config = true,
+    },
 }
