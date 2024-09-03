@@ -1,7 +1,8 @@
+local harpoon = require("harpoon")
 local ls = require("luasnip")
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "]]", "<C-]>", { noremap = true, silent = true , desc = "Go to first Definition"})
+vim.keymap.set("n", "]]", "<C-]>", { noremap = true, silent = true, desc = "Go to first Definition" })
 
 vim.keymap.set("n", "gaf", ':!prettier --write "%" && e<CR>', { silent = true })
 --
@@ -85,8 +86,8 @@ vim.keymap.set("n", "<leader><leader>", "<cmd>w! <CR>")
 
 vim.keymap.set("n", "<leader>]", "<cmd>foldclose<CR>", { desc = "Close Folds" })
 vim.keymap.set("n", "<leader>[", "<cmd>foldopen<CR>", { desc = "Open Folds" })
-vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+-- vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+-- vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
 vim.keymap.set("n", "<leader>lg", [[:LazyGit<CR>]], { silent = true })
 vim.keymap.set("n", "=", [[:LazyGit<CR>]], { silent = true })
@@ -97,17 +98,15 @@ vim.keymap.set("v", "y", "ygv<Esc>")
 -- vim.keymap.set("n", "vv", "V", opts)
 
 -- Harpoon Keymaps
-vim.keymap.set(
-    "n",
-    ",a",
-    require("harpoon.mark").add_file,
-    { desc = "Add current buffer to harpoon list", silent = true }
-)
-vim.keymap.set("n", ",p", require("harpoon.ui").toggle_quick_menu, { desc = "Open Harpoon Menu", silent = true })
-vim.keymap.set("n", ",q", ":lua require('harpoon.ui').nav_file(1)<CR>", { desc = "Harpoon to 1", silent = true })
-vim.keymap.set("n", ",w", ":lua require('harpoon.ui').nav_file(2)<CR>", { desc = "Harpoon to 2", silent = true })
-vim.keymap.set("n", ",e", ":lua require('harpoon.ui').nav_file(3)<CR>", { desc = "Harpoon to 3", silent = true })
-vim.keymap.set("n", ",r", ":lua require('harpoon.ui').nav_file(4)<CR>", { desc = "Harpoon to 4", silent = true })
+vim.keymap.set("n", ",a", function() harpoon:list():add() end)
+vim.keymap.set("n", ",p", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", ",q", function() harpoon:list():select(1) end)
+vim.keymap.set("n", ",w", function() harpoon:list():select(2) end)
+vim.keymap.set("n", ",e", function() harpoon:list():select(3) end)
+vim.keymap.set("n", ",r", function() harpoon:list():select(4) end)
+
+
 -- -- Open Oil to components dir
 vim.keymap.set("n", ",c", [[:Oil src/app/_components<CR>]], { silent = true })
 

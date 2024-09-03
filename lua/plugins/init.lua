@@ -27,7 +27,11 @@ return {
     "mg979/vim-visual-multi",
 
     -- Project file navigation
-    "ThePrimeagen/harpoon",
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
     -- Git related plugins
     "tpope/vim-fugitive",
