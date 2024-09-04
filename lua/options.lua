@@ -55,3 +55,7 @@ vim.opt.sidescrolloff = 8
 
 -- Highlights current line
 vim.o.cursorline = true
+
+
+-- Stops redraw using macros
+vim.o.lazyredraw = false
