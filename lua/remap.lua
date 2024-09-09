@@ -98,17 +98,18 @@ vim.keymap.set("v", "y", "ygv<Esc>")
 -- vim.keymap.set("n", "vv", "V", opts)
 
 -- Harpoon Keymaps
-vim.keymap.set("n", ",a", function() harpoon:list():add() end)
-vim.keymap.set("n", ",p", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", ",a", function() harpoon:list():add() end, { desc = "Add to harpoon buffer" })
+vim.keymap.set("n", ",p", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+    { desc = "Open Harpoon Quci Menu" })
 
-vim.keymap.set("n", ",q", function() harpoon:list():select(1) end)
-vim.keymap.set("n", ",w", function() harpoon:list():select(2) end)
-vim.keymap.set("n", ",e", function() harpoon:list():select(3) end)
-vim.keymap.set("n", ",r", function() harpoon:list():select(4) end)
+vim.keymap.set("n", ",q", function() harpoon:list():select(1) end, { desc = "Harpoon Buffer 1" })
+vim.keymap.set("n", ",w", function() harpoon:list():select(2) end, { desc = "Harpoon Buffer 2" })
+vim.keymap.set("n", ",e", function() harpoon:list():select(3) end, { desc = "Harpoon Buffer 3" })
+vim.keymap.set("n", ",r", function() harpoon:list():select(4) end, { desc = "Harpoon Buffer 4" })
 
 
 -- -- Open Oil to components dir
-vim.keymap.set("n", ",c", [[:Oil src/app/_components<CR>]], { silent = true })
+vim.keymap.set("n", ",c", [[:Oil src/app/_components<CR>]], { desc = "Open Oil to components directory", silent = true })
 
 -- Closes all buffers
 vim.keymap.set("n", "<leader>bd", [[:w | %bd | e# | bd#<CR> | '"zz]], { desc = "[B]uffer [D]elete", silent = true })

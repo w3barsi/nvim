@@ -51,11 +51,9 @@ return {
     "mbbill/undotree",
     "princejoogie/tailwind-highlight.nvim",
 
-    { "kdheepak/lazygit.nvim", event = "VeryLazy" },
+    { "kdheepak/lazygit.nvim",                       event = "VeryLazy" },
 
     -- Useful plugin to show you pending keybinds.
-    { "folke/which-key.nvim",  opts = {} },
-
     {
         -- Add indentation guides even on blank lines
         "lukas-reineke/indent-blankline.nvim",
