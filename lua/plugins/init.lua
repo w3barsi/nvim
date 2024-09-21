@@ -6,7 +6,7 @@ return {
     {
         "OlegGulevskyy/better-ts-errors.nvim",
         dependencies = { "MunifTanjim/nui.nvim" },
-        config = {
+        opts = {
             keymaps = {
                 toggle = "<leader>dd",           -- default '<leader>dd'
                 go_to_definition = "<leader>dx", -- default '<leader>dx'
@@ -46,7 +46,17 @@ return {
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
     -- Motions for surround tags
-    "tpope/vim-surround",
+    -- "tpope/vim-surround",
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    },
 
     "mbbill/undotree",
     "princejoogie/tailwind-highlight.nvim",
@@ -71,4 +81,20 @@ return {
         cmd = "Screenkey",
         config = true,
     },
+    {
+        "christoomey/vim-tmux-navigator",
+        cmd = {
+            "TmuxNavigateLeft",
+            "TmuxNavigateDown",
+            "TmuxNavigateUp",
+            "TmuxNavigateRight",
+            "TmuxNavigatePrevious",
+        },
+        keys = {
+            { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+            { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+            { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+            { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+        },
+    }
 }
