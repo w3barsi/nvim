@@ -35,7 +35,7 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = "menu,menuone,noselect"
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
@@ -59,3 +59,6 @@ vim.o.cursorline = true
 
 -- Stops redraw using macros
 vim.o.lazyredraw = false
+
+-- Set completion menu height
+vim.o.pumheight = 10
