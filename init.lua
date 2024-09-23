@@ -20,7 +20,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- require('kickstart.plugins.autoformat'),
   { import = "plugins" },
-}, {})
+}, {
+  change_detection = { notify = false }
+})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
