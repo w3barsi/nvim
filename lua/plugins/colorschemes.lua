@@ -1,5 +1,21 @@
 return {
     {
+        "zaldih/themery.nvim",
+        config = function()
+            require("themery").setup({
+                themes = {
+                    "catppuccin-frappe",
+                    "catppuccin-mocha",
+                    "catppuccin-macchiato",
+                    "rose-pine-main",
+                    "rose-pine-moon",
+                    "dracula",
+                    "onedark",
+                },
+            })
+        end
+    },
+    {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
@@ -36,7 +52,7 @@ return {
                     }
                 end,
             })
-            vim.cmd.colorscheme("dracula")
+            -- vim.cmd.colorscheme("dracula")
         end,
     },
 
@@ -48,4 +64,17 @@ return {
         --   vim.cmd.colorscheme 'onedark'
         -- end,
     },
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        config = function()
+            require('rose-pine').setup({
+                highlight_groups = {
+                    YankHighlight = { fg = "base", bg = "love" }
+                }
+            })
+        end,
+
+    }
+
 }
