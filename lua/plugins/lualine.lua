@@ -4,19 +4,25 @@ return {
     -- -- See `:help lualine.txt`
     -- --
     -- event = "VeryLazy",
-    -- opts = {
-    --     options = {
-    --         icons_enabled = false,
-    --         component_separators = "|",
-    --         section_separators = "",
-    --     },
-    --     sections = {
-    --         lualine_c = {
-    --             {
-    --                 "filename",
-    --                 path = 1,
+    -- opts = function()
+    --     local config = require("config")
+    --     local icons = config.icons
+    --
+    --     return {
+    --         options = {
+    --             icons_enabled = false,
+    --             component_separators = "|",
+    --             section_separators = "",
+    --         },
+    --
+    --         sections = {
+    --             lualine_c = {
+    --                 {
+    --                     "filename",
+    --                     path = 1,
+    --                 },
     --             },
     --         },
-    --     },
-    -- },
+    --     }
+    -- end
 }
