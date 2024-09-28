@@ -76,7 +76,7 @@ return {
                     vim.lsp.buf.format()
                 end, { desc = "Format current buffer with LSP" })
 
-                nmap("go", ":OrganizeImports<cr>", "Organize Imports", true)
+                nmap("<leader>to", ":TSToolsOrganizeImports<cr>", "Organize Imports", true)
             end
 
             -- Enable the following language servers
@@ -154,14 +154,14 @@ return {
                 vim.lsp.buf.execute_command(params)
             end
 
-            lspconfig.tsserver.setup({
-                commands = {
-                    OrganizeImports = {
-                        organize_imports,
-                        description = "Organize Imports",
-                    },
-                },
-            })
+            -- lspconfig.tsserver.setup({
+            --     commands = {
+            --         OrganizeImports = {
+            --             organize_imports,
+            --             description = "Organize Imports",
+            --         },
+            --     },
+            -- })
 
             require('lsp_signature').setup({})
 
@@ -201,5 +201,10 @@ return {
             nvim_lsp.ahk2.setup({})
         end,
 
+    },
+    {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
     }
 }
