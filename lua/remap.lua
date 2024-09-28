@@ -58,10 +58,6 @@ vim.keymap.set("n", "<leader>l", "<cmd>wincmd l <CR>")
 vim.keymap.set("n", "<A-h>", "<cmd>wincmd h <CR>")
 vim.keymap.set("n", "<A-l>", "<cmd>wincmd l <CR>")
 
--- Ctrl + BS Erases a word
--- Using vim.cmd for now
-vim.cmd([[noremap! <C-BS> <C-w>]])
--- vim.cmd([[noremap! <C-h> <C-w>]])
 -- Makes it so x doesn't touch buffer
 vim.keymap.set("n", "x", [["_x]])
 
