@@ -42,6 +42,7 @@ vim.o.termguicolors = true
 
 vim.o.wrap = false
 vim.o.linebreak = true
+vim.o.breakindent = true
 
 vim.o.colorcolumn = "80"
 
@@ -62,3 +63,6 @@ vim.o.lazyredraw = false
 
 -- Set completion menu height
 vim.o.pumheight = 10
+
+-- Disabled commenting on new line
+vim.cmd("autocmd BufEnter * set formatoptions-=cro")
