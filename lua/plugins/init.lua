@@ -26,19 +26,6 @@ return {
     -- Multi Line Editing
     "mg979/vim-visual-multi",
 
-    -- Project file navigation
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {
-            settings = {
-                save_on_toggle = true,
-                sync_on_ui_close = true
-            }
-        }
-    },
-
     -- Git related plugins
     "tpope/vim-fugitive",
     "tpope/vim-rhubarb",

@@ -1,5 +1,3 @@
-local harpoon = require("harpoon")
-local ls = require("luasnip")
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "]]", "<C-]>", { noremap = true, silent = true, desc = "Go to first Definition" })
@@ -93,10 +91,13 @@ vim.keymap.set("v", "y", "ygv<Esc>")
 -- vim.keymap.set("n", "V", "v$", opts)
 -- vim.keymap.set("n", "vv", "V", opts)
 
+
+local harpoon = require("harpoon")
+local extensions = require("harpoon.extensions");
 -- Harpoon Keymaps
 vim.keymap.set("n", ",a", function() harpoon:list():add() end, { desc = "Add to harpoon buffer" })
 vim.keymap.set("n", ",p", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
-    { desc = "Open Harpoon Quci Menu" })
+    { desc = "Open Harpoon Quick Menu" })
 
 vim.keymap.set("n", ",q", function() harpoon:list():select(1) end, { desc = "Harpoon Buffer 1" })
 vim.keymap.set("n", ",w", function() harpoon:list():select(2) end, { desc = "Harpoon Buffer 2" })
