@@ -1,6 +1,8 @@
 return {
     'echasnovski/mini.nvim',
     config = function()
+        -- vim.api.nvim_set_hl(0, "MiniMiddle", { fg = colors.bright_white, bg = colors.black })
+        --
         -- local statusline = require 'mini.statusline'
         --
         -- local my_active_content = function()
@@ -17,7 +19,7 @@ return {
         --         { hl = mode_hl,                 strings = { mode } },
         --         { hl = 'MiniStatuslineDevinfo', strings = { git, diagnostics, diff } },
         --         '%<', -- Mark general truncate point
-        --         { hl = 'MiniStatuslineFilename', strings = { filename } },
+        --         { hl = 'MiniMiddle', strings = { filename } },
         --         '%=', -- End left alignment
         --         {
         --             hl = 'MiniStatuslineFileinfo',
@@ -26,11 +28,12 @@ return {
         --                 and require("mini.icons").get("filetype", vim.bo.filetype) .. " " .. vim.bo.filetype,
         --             },
         --         },
-        --         { hl = mode_hl,                  strings = { "%l:%v" } },
+        --         { hl = mode_hl,      strings = { "%l:%v" } },
         --     })
         -- end
-
+        --
         -- statusline.setup({ use_icons = vim.g.have_nerd_font, content = { active = my_active_content } })
+        --
         require('mini.files').setup({
             options = {
                 use_as_default_explorer = false

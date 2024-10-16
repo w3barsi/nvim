@@ -83,5 +83,15 @@ return {
             { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
             { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
         },
+    },
+    {
+        "norcalli/nvim-colorizer.lua",
+        opts = function()
+            vim.o.termguicolors = true
+            return {
+                "lua", "css", "typescriptreact"
+            }
+        end
     }
+
 }
