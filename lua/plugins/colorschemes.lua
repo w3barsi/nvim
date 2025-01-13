@@ -11,9 +11,26 @@ return {
                     "rose-pine-moon",
                     "dracula",
                     "onedark",
+                    "barstrata",
+                    "tokyonight",
+                    "tokyonight-night",
+                    "tokyonight-storm",
+                    "tokyonight-day",
+                    "tokyonight-moon",
+                    "oxocarbon"
                 },
             })
         end
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim"
+        -- Add in any other configuration;
+        --   event = foo,
+        --   config = bar
+        --   end,
+    },
+    {
+        "w3barsi/barstrata.nvim"
     },
     {
         "catppuccin/nvim",
@@ -29,6 +46,7 @@ return {
         priority = 1000,
         config = function()
             local dracula = require("dracula")
+            ---@diagnostic disable-next-line: missing-fields
             dracula.setup({
                 overrides = function(colors)
                     return {
@@ -52,7 +70,7 @@ return {
                     }
                 end,
             })
-            -- vim.cmd.colorscheme("dracula")
+            vim.cmd.colorscheme("dracula")
         end,
     },
 
@@ -75,6 +93,12 @@ return {
             })
         end,
 
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
     }
 
 }

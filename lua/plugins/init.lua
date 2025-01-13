@@ -76,6 +76,12 @@ return {
                 "lua", "css", "typescriptreact"
             }
         end
-    }
+    },
+    {
+        "tzachar/highlight-undo.nvim",
+        opts = {
 
+        }
+    },
+    { 'wakatime/vim-wakatime', lazy = false }
 }

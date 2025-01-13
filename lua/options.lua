@@ -2,12 +2,9 @@
 -- Set highlight on search
 vim.o.hlsearch = false
 
--- Make line numbers default
-vim.wo.number = true
-
 -- Relative Line Numbers
 vim.o.nu = true
-vim.o.rnu = true
+-- vim.o.rnu = true
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -66,3 +63,6 @@ vim.o.pumheight = 10
 
 -- Disabled commenting on new line
 vim.cmd("autocmd BufEnter * set formatoptions-=cro")
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = "split"

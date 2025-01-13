@@ -24,7 +24,7 @@
 --         null_ls.setup({
 --             sources = {
 --                 null_ls.builtins.formatting.stylua,
---                 null_ls.builtins.formatting.prettierd,
+--                 null_ls.builtins.formatting.prettier,
 --                 -- null_ls.builtins.diagnostics.eslint,
 --                 -- null_ls.builtins.completion.spell,
 --             },
@@ -74,6 +74,7 @@ return { -- Autoformat
         end,
         formatters_by_ft = {
             lua = { "stylua" },
+            astro = { "prettierd" },
             javascript = { "prettierd" },
             typescript = { "prettierd" },
             svelte = { "prettierd" },
@@ -91,7 +92,7 @@ return { -- Autoformat
             -- python = { "isort", "black" },
             --
             -- You can use 'stop_after_first' to run the first available formatter from the list
-            -- javascript = { "prettierd", "prettier", stop_after_first = true },
+            -- javascript = { "prettier", "prettier", stop_after_first = true },
         },
     },
 }
