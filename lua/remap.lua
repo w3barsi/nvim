@@ -1,15 +1,17 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "]]", "<C-]>", { noremap = true, silent = true, desc = "Go to first Definition" })
+vim.keymap.set("n", "<leader><Tab>", ":Inspect<cr>", opts)
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>x", ":.lua<CR>")
+vim.keymap.set("v", "<space>x", ":lua<CR>")
 
-vim.keymap.set("n", "gaf", ':!prettier --write "%" && e<CR>', { silent = true })
+vim.keymap.set("n", "]]", "<C-]>", { noremap = true, silent = true, desc = "Go to first Definition" })
 --
 -- [[ Basic Keymaps ]]
 vim.keymap.set("n", ";;", "A;<Esc>")
 
 -- Opens :Explorer
 -- vim.keymap.set('n', '<C-e>', '<cmd>Explore <CR>')
-vim.keymap.set("n", "<C-e>", "<cmd>Neotree toggle<CR>")
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
