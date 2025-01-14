@@ -163,7 +163,9 @@ return {
             --     },
             -- })
 
-            require('lsp_signature').setup({})
+            require('lsp_signature').setup({
+                floating_window = false
+            })
 
             local function custom_attach(client, bufnr)
                 require("lsp_signature").on_attach({
