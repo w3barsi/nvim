@@ -1,12 +1,9 @@
 return {
     {
-        -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-        -- used for completion, annotations and signatures of Neovim apis
         'folke/lazydev.nvim',
         ft = 'lua',
         opts = {
             library = {
-                -- Load luvit types when the `vim.uv` word is found
                 { path = 'luvit-meta/library', words = { 'vim%.uv' } },
             },
         },
@@ -17,23 +14,13 @@ return {
         dependencies = {
             { "williamboman/mason.nvim", config = true },
             "williamboman/mason-lspconfig.nvim",
-
-            -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
             { "j-hui/fidget.nvim",       tag = "legacy", opts = {} },
-
-            -- { "folke/neodev.nvim",       opts = {} },
             "ray-x/lsp_signature.nvim"
         },
         config = function()
-            -- [[ Configure LSP ]]
-            --  This function gets run when an LSP connects to a particular buffer.
-            local on_attach = function(_, bufnr)
-                -- NOTE: Remember that lua is a real programming language, and as such it is possible
-                -- to define small helper and utility functions so you don't have to repeat yourself
-                -- many times.
-                --
-                -- In this case, we create a function that lets us more easily define mappings specific
-                -- for LSP related items. It sets the mode, buffer and description for us each time.
+            local on_attach = function(event, bufnr)
+                local opts = { buffer = event.buf }
+
                 local nmap = function(keys, func, desc, silent)
                     if desc then
                         desc = "LSP: " .. desc
@@ -45,56 +32,36 @@ return {
                 nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                 nmap("gca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
+                nmap("K", vim.lsp.buf.hover, "Hover Documentation")
                 nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
                 nmap("gs", require("telescope.builtin").git_status, "[G]it [S]tatus")
-                nmap(
-                    "gf",
-                    [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
-                    "[G]oto [F]ormat",
-                    true
-                )
+                -- nmap(
+                --     "gf",
+                --     [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
+                --     "[G]oto [F]ormat",
+                --     true
+                -- )
                 nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-                nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-                nmap("gD", vim.lsp.buf.type_definition, "Type [D]efinition")
+                nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+                nmap("gk", vim.lsp.buf.type_definition, "Type [D]efinition")
                 -- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
                 nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
-                -- See `:help K` for why this keymap
-                nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-                -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
                 -- Lesser used LSP functionality
                 nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-                nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-                nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-                nmap("<leader>wl", function()
-                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                end, "[W]orkspace [L]ist Folders")
+
+                vim.keymap.set({ "n", "x" }, "gf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
 
                 -- Create a command `:Format` local to the LSP buffer
                 vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-                    vim.lsp.buf.format()
+                    vim.lsp.buf.format({ async = true })
                 end, { desc = "Format current buffer with LSP" })
 
                 nmap("<leader>to", ":TSToolsOrganizeImports<cr>", "Organize Imports", true)
             end
 
-            -- Enable the following language servers
-            --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-            --
-            --  Add any additional override configuration in the following tables. They will be passed to
-            --  the `settings` field of the server config. You must look up that documentation yourself.
-            --
-            --  If you want to override the default filetypes that your language server will attach to you can
-            --  define the property 'filetypes' to the map in question.
             local servers = {
-                -- clangd = {},
-                -- gopls = {},
-                -- pyright = {},
-                -- rust_analyzer = {},
-                -- tsserver = {},
-                -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
                 lua_ls = {
                     Lua = {
                         workspace = { checkThirdParty = false },
@@ -103,7 +70,6 @@ return {
                 },
             }
 
-            -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
             capabilities.textDocument.foldingRange = {
