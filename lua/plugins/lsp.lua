@@ -145,39 +145,10 @@ return {
                 end,
             })
 
-            -- Add organize imports to tsserver
-            local function organize_imports()
-                local params = {
-                    command = "_typescript.organizeImports",
-                    arguments = { vim.api.nvim_buf_get_name(0) },
-                }
-                vim.lsp.buf.execute_command(params)
-            end
-
-            -- lspconfig.tsserver.setup({
-            --     commands = {
-            --         OrganizeImports = {
-            --             organize_imports,
-            --             description = "Organize Imports",
-            --         },
-            --     },
-            -- })
 
             require('lsp_signature').setup({
                 floating_window = false
             })
-
-            local function custom_attach(client, bufnr)
-                require("lsp_signature").on_attach({
-                    bind = true,
-                    use_lspsaga = false,
-                    floating_window = true,
-                    fix_pos = true,
-                    hint_enable = true,
-                    hi_parameter = "Search",
-                    handler_opts = { "double" },
-                })
-            end
 
             local ahk2_configs = {
                 autostart = true,
