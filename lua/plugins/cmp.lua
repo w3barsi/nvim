@@ -16,11 +16,14 @@ return {
         "onsails/lspkind.nvim",
     },
     config = function()
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")
         local lspkind = require("lspkind")
         local luasnip = require("luasnip")
         require("luasnip.loaders.from_vscode").lazy_load()
         luasnip.config.setup({})
+
+        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
         cmp.setup({
             --- @diagnostic disable-next-line: missing-fields
@@ -55,8 +58,6 @@ return {
                 ["<C-u>"] = cmp.mapping.scroll_docs(4),
                 ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-Space>"] = cmp.mapping.complete({}),
-
-
                 -- If you prefer more traditional completion keymaps,
                 -- you can uncomment the following lines
                 ['<Tab>'] = cmp.mapping.select_next_item(),
@@ -96,6 +97,9 @@ return {
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
                 { name = "path" },
+            },
+            experimental = {
+                ghost_text = true,
             },
         })
     end,
