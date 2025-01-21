@@ -16,14 +16,11 @@ return {
         "onsails/lspkind.nvim",
     },
     config = function()
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")
         local lspkind = require("lspkind")
         local luasnip = require("luasnip")
         require("luasnip.loaders.from_vscode").lazy_load()
         luasnip.config.setup({})
-
-        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
         cmp.setup({
             --- @diagnostic disable-next-line: missing-fields
