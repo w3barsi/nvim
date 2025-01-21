@@ -85,8 +85,8 @@ vim.keymap.set("n", "<leader>[", "<cmd>foldopen<CR>", { desc = "Open Folds" })
 -- vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 -- vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
-vim.keymap.set("n", "<leader>lg", [[:LazyGit<CR>]], { silent = true })
-vim.keymap.set("n", "=", [[:LazyGit<CR>]], { silent = true })
+vim.keymap.set("n", "<leader>lg", ":lua Snacks.lazygit()", { silent = true })
+vim.keymap.set("n", "=", ":lua Snacks.lazygit()<CR>", { silent = true })
 
 -- Returns to last selected letter on visual mode yank
 vim.keymap.set("v", "y", "ygv<Esc>")
