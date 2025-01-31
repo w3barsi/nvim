@@ -13,10 +13,11 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "williamboman/mason.nvim", config = true },
-            "williamboman/mason-lspconfig.nvim",
-            { "j-hui/fidget.nvim",       tag = "legacy", opts = {} },
-            "ray-x/lsp_signature.nvim"
+            { "williamboman/mason.nvim",          config = true },
+            { "williamboman/mason-lspconfig.nvim" },
+            { "j-hui/fidget.nvim",                tag = "legacy", opts = {} },
+            { "ray-x/lsp_signature.nvim" },
+            { "dmmulroy/ts-error-translator.nvim" }
         },
         config = function()
             local on_attach = function(event, bufnr)
@@ -139,6 +140,8 @@ return {
             configs["ahk2"] = { default_config = ahk2_configs }
             local nvim_lsp = require("lspconfig")
             nvim_lsp.ahk2.setup({})
+
+            require("ts-error-translator").setup()
         end,
 
     },
