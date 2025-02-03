@@ -31,6 +31,10 @@ return {
                         ["<esc>"] = actions.close,
                     },
                 },
+                file_ignore_patterns = {
+                    "node_modules/*",
+                    ".git/*"
+                },
             },
         })
 
