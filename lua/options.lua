@@ -66,3 +66,6 @@ vim.cmd("autocmd BufEnter * set formatoptions-=cro")
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
+
+-- Allow me to use dd in quickfixlist
+vim.o.ma = true
