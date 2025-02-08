@@ -17,7 +17,8 @@ return {
             { "williamboman/mason-lspconfig.nvim" },
             { "j-hui/fidget.nvim",                tag = "legacy", opts = {} },
             { "ray-x/lsp_signature.nvim" },
-            { "dmmulroy/ts-error-translator.nvim" }
+            { "dmmulroy/ts-error-translator.nvim" },
+            { "yioneko/nvim-vtsls" }
         },
         config = function()
             local on_attach = function(event, bufnr)
@@ -53,14 +54,20 @@ return {
                 -- Lesser used LSP functionality
                 nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-                vim.keymap.set({ "n", "x" }, "gf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+                -- vim.keymap.set({ "n", "x" }, "gf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+                nmap(
+                    "gf",
+                    [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
+                    "[G]oto [F]ormat",
+                    true
+                )
 
                 -- Create a command `:Format` local to the LSP buffer
                 vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
                     vim.lsp.buf.format({ async = true })
                 end, { desc = "Format current buffer with LSP" })
 
-                nmap("<leader>to", ":TSToolsOrganizeImports<cr>", "Organize Imports", true)
+                nmap("<leader>o", ":VtsExec organize_imports<CR>", "Organize Imports", true)
             end
 
             local servers = {
@@ -107,6 +114,7 @@ return {
                     })
                 end,
                 ["vtsls"] = function()
+                    require("lspconfig.configs").vtsls = require("vtsls").lspconfig
                     require("lspconfig").vtsls.setup({
                         root_dir = require("lspconfig").util.root_pattern(
                             ".git",
