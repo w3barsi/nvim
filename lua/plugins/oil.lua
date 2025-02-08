@@ -13,7 +13,7 @@ return {
             ["<C-t>"] = "actions.select_tab",
             ["gp"] = "actions.preview",
             ["<C-c>"] = "actions.close",
-            ["<Esc>"] = "actions.close",
+            -- ["<Esc>"] = "actions.close",
             ["<C-l>"] = "actions.refresh",
             ["-"] = "actions.parent",
             ["<BS>"] = "actions.parent",
