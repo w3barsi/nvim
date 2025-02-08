@@ -70,6 +70,8 @@ return {
                         telemetry = { enable = false },
                     },
                 },
+                "vtsls",
+                "astro"
             }
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -83,7 +85,14 @@ return {
             local mason_lspconfig = require("mason-lspconfig")
 
             mason_lspconfig.setup({
-                ensure_installed = vim.tbl_keys(servers),
+                automatic_installation = true,
+                ensure_installed = {
+                    "astro",
+                    "cssls",
+                    "vtsls",
+                    "cssmodules_ls",
+                    "lua_ls",
+                }
             })
 
             local lspconfig = require("lspconfig")
@@ -95,6 +104,28 @@ return {
                         on_attach = on_attach,
                         settings = servers[server_name],
                         filetypes = (servers[server_name] or {}).filetypes,
+                    })
+                end,
+                ["vtsls"] = function()
+                    require("lspconfig").vtsls.setup({
+                        root_dir = require("lspconfig").util.root_pattern(
+                            ".git",
+                            "pnpm-workspace.yaml",
+                            "pnpm-lock.yaml",
+                            "yarn.lock",
+                            "package-lock.json",
+                            "bun.lockb"
+                        ),
+                        typescript = {
+                            tsserver = {
+                                maxTsServerMemory = 12288,
+                            },
+                        },
+                        experimental = {
+                            completion = {
+                                entriesLimit = 3,
+                            },
+                        },
                     })
                 end,
             })
@@ -145,9 +176,9 @@ return {
         end,
 
     },
-    {
-        "pmizio/typescript-tools.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        opts = {},
-    }
+    -- {
+    --     "pmizio/typescript-tools.nvim",
+    --     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    --     opts = {},
+    -- }
 }
