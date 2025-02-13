@@ -8,7 +8,7 @@ return {
         dependencies = { "MunifTanjim/nui.nvim" },
         opts = {
             keymaps = {
-                toggle = "<leader>dd",           -- default '<leader>dd'
+                toggle = "<leader>dd", -- default '<leader>dd'
                 go_to_definition = "<leader>dx", -- default '<leader>dx'
             },
         },
@@ -47,26 +47,25 @@ return {
     },
 
     -- "gc" to comment visual regions/lines
-    { "numToStr/Comment.nvim",                       opts = {} },
+    { "numToStr/Comment.nvim", opts = {} },
     { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" },
     {
         "NStefan002/screenkey.nvim",
         cmd = "Screenkey",
         config = true,
     },
-    {
-        "norcalli/nvim-colorizer.lua",
-        opts = function()
-            vim.o.termguicolors = true
-            return {
-                "lua", "css", "typescriptreact"
-            }
-        end
-    },
+    -- {
+    --     "norcalli/nvim-colorizer.lua",
+    --     opts = function()
+    --         vim.o.termguicolors = true
+    --         return {
+    --             "lua",
+    --             "typescriptreact",
+    --         }
+    --     end,
+    -- },
     {
         "tzachar/highlight-undo.nvim",
-        opts = {
-
-        }
+        opts = {},
     },
 }

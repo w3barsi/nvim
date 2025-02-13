@@ -1,24 +1,24 @@
 return {
     {
-        'folke/lazydev.nvim',
-        ft = 'lua',
+        "folke/lazydev.nvim",
+        ft = "lua",
         opts = {
             library = {
-                { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
                 -- { path = "snacks.nvim",        words = "Snacks" }
             },
         },
     },
-    { 'Bilal2453/luvit-meta', lazy = true },
+    { "Bilal2453/luvit-meta", lazy = true },
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "williamboman/mason.nvim",          config = true },
+            { "williamboman/mason.nvim", config = true },
             { "williamboman/mason-lspconfig.nvim" },
-            { "j-hui/fidget.nvim",                tag = "legacy", opts = {} },
+            { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
             { "ray-x/lsp_signature.nvim" },
             { "dmmulroy/ts-error-translator.nvim" },
-            { "yioneko/nvim-vtsls" }
+            { "yioneko/nvim-vtsls" },
         },
         config = function()
             local on_attach = function(event, bufnr)
@@ -43,7 +43,6 @@ return {
                 nmap("gk", vim.lsp.buf.type_definition, "Type [D]efinition")
                 -- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
                 nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
 
                 -- Lesser used LSP functionality
                 nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -72,7 +71,7 @@ return {
                     },
                 },
                 "vtsls",
-                "astro"
+                "astro",
             }
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -93,9 +92,8 @@ return {
                     "vtsls",
                     "cssmodules_ls",
                     "lua_ls",
-                }
+                },
             })
-
             local lspconfig = require("lspconfig")
 
             mason_lspconfig.setup_handlers({
@@ -146,9 +144,8 @@ return {
                 end,
             })
 
-
-            require('lsp_signature').setup({
-                floating_window = false
+            require("lsp_signature").setup({
+                floating_window = false,
             })
 
             local ahk2_configs = {
@@ -156,7 +153,7 @@ return {
                 cmd = {
                     "node",
                     vim.fn.expand("$HOME/.config/nvim/languages/vscode-autohotkey2-lsp/server/dist/server.js"),
-                    "--stdio"
+                    "--stdio",
                 },
                 filetypes = { "ahk", "autohotkey", "ah2" },
                 init_options = {
@@ -169,14 +166,13 @@ return {
                 capabilities = capabilities,
                 on_attach = on_attach,
             }
-            local configs = require "lspconfig.configs"
+            local configs = require("lspconfig.configs")
             configs["ahk2"] = { default_config = ahk2_configs }
             local nvim_lsp = require("lspconfig")
             nvim_lsp.ahk2.setup({})
 
             require("ts-error-translator").setup()
         end,
-
     },
     -- {
     --     "pmizio/typescript-tools.nvim",

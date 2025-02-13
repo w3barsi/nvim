@@ -1,7 +1,7 @@
 return { -- Autoformat
-    'stevearc/conform.nvim',
-    -- event = { 'BufWritePre' },
-    -- cmd = { 'ConformInfo' },
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
     -- keys = {
     --     {
     --         '<leader>f',
@@ -34,10 +34,10 @@ return { -- Autoformat
             lua = { "stylua" },
             astro = { "prettierd" },
             javascript = { "prettierd" },
-            typescript = { "prettierd" },
+            typescript = { "prettierd", "prettier", stop_after_first = true },
             svelte = { "prettierd" },
-            javascriptreact = { "prettierd" },
-            typescriptreact = { "prettierd" },
+            javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+            typescriptreact = { "prettierd", "prettier", stop_after_first = true },
             css = { "prettierd" },
             html = { "prettierd" },
             json = { "prettierd" },
@@ -67,5 +67,4 @@ return { -- Autoformat
     --         on_save_enabled = true
     --     }
     -- },
-
 }
