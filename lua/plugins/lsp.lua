@@ -38,12 +38,6 @@ return {
                 nmap("K", vim.lsp.buf.hover, "Hover Documentation")
                 nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
                 nmap("gs", require("telescope.builtin").git_status, "[G]it [S]tatus")
-                -- nmap(
-                --     "gf",
-                --     [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
-                --     "[G]oto [F]ormat",
-                --     true
-                -- )
                 nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
                 nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
                 nmap("gk", vim.lsp.buf.type_definition, "Type [D]efinition")
@@ -57,7 +51,7 @@ return {
                 -- vim.keymap.set({ "n", "x" }, "gf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
                 nmap(
                     "gf",
-                    [[:lua require("conform").format({ async = true, lsp_fallback = true })<CR>]],
+                    [[:lua require("conform").format({ async = false, lsp_fallback = true })<CR>]],
                     "[G]oto [F]ormat",
                     true
                 )
