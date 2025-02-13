@@ -4,33 +4,12 @@ return {
         config = function()
             require("themery").setup({
                 themes = {
-                    "catppuccin-frappe",
                     "catppuccin-mocha",
-                    "catppuccin-macchiato",
                     "rose-pine-main",
-                    "rose-pine-moon",
                     "dracula",
-                    "onedark",
-                    "barstrata",
-                    "tokyonight",
-                    "tokyonight-night",
-                    "tokyonight-storm",
-                    "tokyonight-day",
-                    "tokyonight-moon",
-                    "oxocarbon"
                 },
             })
         end
-    },
-    {
-        "nyoom-engineering/oxocarbon.nvim"
-        -- Add in any other configuration;
-        --   event = foo,
-        --   config = bar
-        --   end,
-    },
-    {
-        "w3barsi/barstrata.nvim"
     },
     {
         "catppuccin/nvim",
@@ -67,7 +46,6 @@ return {
             vim.cmd.colorscheme("catppuccin-macchiato")
         end,
     },
-
     {
         "Mofiqul/dracula.nvim",
         priority = 1000,
@@ -97,18 +75,9 @@ return {
                     }
                 end,
             })
-            vim.cmd.colorscheme("dracula")
         end,
     },
 
-    {
-        -- Theme inspired by Atom
-        "navarasu/onedark.nvim",
-        -- priority = 1000,
-        -- config = function()
-        --   vim.cmd.colorscheme 'onedark'
-        -- end,
-    },
     {
         "rose-pine/neovim",
         name = "rose-pine",
@@ -121,11 +90,4 @@ return {
         end,
 
     },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    }
-
 }
