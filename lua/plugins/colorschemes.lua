@@ -7,9 +7,10 @@ return {
                     "catppuccin-mocha",
                     "rose-pine-main",
                     "dracula",
+                    "dracula-soft",
                 },
             })
-        end
+        end,
     },
     {
         "catppuccin/nvim",
@@ -39,11 +40,15 @@ return {
                 custom_highlights = function(colors)
                     return {
                         YankHighlight = { fg = colors.base, bg = colors.red },
+                        ["@variable.member.typescript"] = { fg = colors.red },
+                        ["@lsp.type.property.typescript"] = { fg = colors.blue },
+                        ["@lsp.typemod.property.declaration.typescript"] = { fg = colors.lavender },
+                        -- ["@punctuation.bracket.typescript"] = { fg = colors.text },
                     }
-                end
+                end,
             })
 
-            vim.cmd.colorscheme("catppuccin-macchiato")
+            vim.cmd.colorscheme("catppuccin-mocha")
         end,
     },
     {
@@ -82,12 +87,11 @@ return {
         "rose-pine/neovim",
         name = "rose-pine",
         config = function()
-            require('rose-pine').setup({
+            require("rose-pine").setup({
                 highlight_groups = {
-                    YankHighlight = { fg = "base", bg = "love" }
-                }
+                    YankHighlight = { fg = "base", bg = "love" },
+                },
             })
         end,
-
     },
 }
