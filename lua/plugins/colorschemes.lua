@@ -6,6 +6,8 @@ return {
                 themes = {
                     "catppuccin-mocha",
                     "rose-pine-main",
+                    "rose-pine-moon",
+                    "rose-pine-dawn",
                     "dracula",
                     "dracula-soft",
                 },
@@ -90,6 +92,7 @@ return {
             require("rose-pine").setup({
                 highlight_groups = {
                     YankHighlight = { fg = "base", bg = "love" },
+                    CodeiumSuggestion = { fg = "#7AA67A" },
                 },
             })
         end,
