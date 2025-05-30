@@ -3,8 +3,8 @@
 vim.o.hlsearch = false
 
 -- Relative Line Numbers
-vim.o.nu = true
--- vim.o.rnu = true
+vim.o.nu = false
+vim.o.rnu = true
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -53,7 +53,6 @@ vim.opt.sidescrolloff = 8
 
 -- Highlights current line
 vim.o.cursorline = true
-
 
 -- Stops redraw using macros
 vim.o.lazyredraw = false
