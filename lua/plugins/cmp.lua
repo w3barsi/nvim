@@ -57,8 +57,8 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete({}),
                 -- If you prefer more traditional completion keymaps,
                 -- you can uncomment the following lines
-                ['<Tab>'] = cmp.mapping.select_next_item(),
-                ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+                ["<Tab>"] = cmp.mapping.select_next_item(),
+                ["<S-Tab>"] = cmp.mapping.select_prev_item(),
                 ["<CR>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = false,
@@ -72,22 +72,20 @@ return {
                 --
                 -- <c-l> will move you to the right of each of the expansion locations.
                 -- <c-h> is similar, except moving you backwards.
-                ['<C-l>'] = cmp.mapping(function()
+                ["<C-l>"] = cmp.mapping(function()
                     if luasnip.expand_or_locally_jumpable() then
                         luasnip.expand_or_jump()
                     end
-                end, { 'i', 's' }),
-                ['<C-h>'] = cmp.mapping(function()
+                end, { "i", "s" }),
+                ["<C-h>"] = cmp.mapping(function()
                     if luasnip.locally_jumpable(-1) then
                         luasnip.jump(-1)
                     end
-                end, { 'i', 's' }),
-
-
+                end, { "i", "s" }),
             }),
             sources = {
                 {
-                    name = 'lazydev',
+                    name = "lazydev",
                     -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
                     group_index = 0,
                 },
@@ -96,7 +94,7 @@ return {
                 { name = "path" },
             },
             experimental = {
-                ghost_text = true,
+                ghost_text = false,
             },
         })
     end,
