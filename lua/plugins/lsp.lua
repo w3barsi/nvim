@@ -13,8 +13,8 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "williamboman/mason.nvim", config = true },
-            { "williamboman/mason-lspconfig.nvim" },
+            { "williamboman/mason.nvim", config = true, version = "1.11.0" },
+            { "williamboman/mason-lspconfig.nvim", version = "v1.32.0" },
             { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
             { "ray-x/lsp_signature.nvim" },
             { "dmmulroy/ts-error-translator.nvim" },
