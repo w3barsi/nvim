@@ -37,7 +37,7 @@ return { -- Autoformat
             typescript = { "prettierd", "prettier", stop_after_first = true },
             svelte = { "prettierd" },
             javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-            typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+            typescriptreact = { "prettier", stop_after_first = true },
             css = { "prettierd" },
             html = { "prettierd" },
             json = { "prettierd" },
