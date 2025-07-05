@@ -116,6 +116,8 @@ vim.keymap.set("n", ",r", function()
     harpoon:list():select(4)
 end, { desc = "Harpoon Buffer 4" })
 
+vim.keymap.set("n", "``", ":e .env<CR>", { desc = "Open .env file" })
+
 -- -- Open Oil to components dir
 vim.keymap.set(
     "n",
