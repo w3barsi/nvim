@@ -76,7 +76,7 @@ vim.keymap.set("n", "n", "nzz", opts)
 -- Paste without changing clipboard buffer
 vim.keymap.set("x", "<leader>p", '"_dP', { silent = true })
 
-vim.keymap.set("n", "<leader><leader>", "<cmd>w! <CR>")
+vim.keymap.set("n", "<tab>", "<cmd>w! <CR>")
 
 -- Folding Remaps
 
