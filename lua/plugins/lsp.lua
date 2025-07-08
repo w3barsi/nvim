@@ -72,6 +72,7 @@ return {
                 },
                 "vtsls",
                 "astro",
+                "biome",
             }
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -80,6 +81,25 @@ return {
                 dynamicRegistration = false,
                 lineFoldingOnly = true,
             }
+
+            local biome_on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = bufnr,
+                    callback = function()
+                        vim.lsp.buf.code_action({
+                            filter = function(action)
+                                return action.kind == "source.organizeImports.biome"
+                            end,
+                            apply = true,
+                            context = {
+                                only = { "quickfix" },
+                                diagnostics = vim.diagnostic.get(bufnr, { client_id = client.id }),
+                            },
+                        })
+                    end,
+                })
+            end
 
             -- Ensure the servers above are installed
             local mason_lspconfig = require("mason-lspconfig")
@@ -92,6 +112,7 @@ return {
                     "vtsls",
                     "cssmodules_ls",
                     "lua_ls",
+                    "biome",
                 },
             })
             local lspconfig = require("lspconfig")
@@ -127,6 +148,9 @@ return {
                             },
                         },
                     })
+                end,
+                ["biome"] = function()
+                    lspconfig.biome.setup({ capabilities = capabilities, on_attach = biome_on_attach })
                 end,
             })
 

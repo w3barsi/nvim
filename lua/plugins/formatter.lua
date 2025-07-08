@@ -1,3 +1,9 @@
+local webdev_options = {
+    "prettier",
+    "prettierd",
+    stop_after_first = true,
+}
+
 return { -- Autoformat
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
@@ -33,11 +39,11 @@ return { -- Autoformat
         formatters_by_ft = {
             lua = { "stylua" },
             astro = { "prettierd" },
-            javascript = { "prettierd" },
-            typescript = { "prettierd", "prettier", stop_after_first = true },
+            javascript = webdev_options,
+            typescript = webdev_options,
+            javascriptreact = webdev_options,
+            typescriptreact = webdev_options,
             svelte = { "prettierd" },
-            javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-            typescriptreact = { "prettier", stop_after_first = true },
             css = { "prettierd" },
             html = { "prettierd" },
             json = { "prettierd" },
