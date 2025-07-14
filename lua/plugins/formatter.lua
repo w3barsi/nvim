@@ -1,5 +1,5 @@
 local webdev_options = {
-    "prettier",
+    -- "prettier",
     "prettierd",
     stop_after_first = true,
 }
