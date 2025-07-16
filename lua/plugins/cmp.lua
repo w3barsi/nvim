@@ -30,9 +30,7 @@ return {
                     local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
                     local strings = vim.split(kind.kind, "%s", { trimempty = true })
                     kind.kind = " " .. (strings[1] or "") .. " "
-                    if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= "" then
-                        vim_item.menu = entry.completion_item.detail
-                    else
+                    if not vim_item.menu or vim_item.menu == "" then
                         vim_item.menu = ({
                             nvim_lsp = "[LSP]",
                             luasnip = "[Snippet]",
