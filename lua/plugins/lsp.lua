@@ -172,26 +172,27 @@ return {
                 floating_window = false,
             })
 
-            local ahk2_configs = {
-                autostart = true,
-                cmd = {
-                    "node",
-                    vim.fn.expand("$HOME/.config/nvim/languages/vscode-autohotkey2-lsp/server/dist/server.js"),
-                    "--stdio",
-                },
-                filetypes = { "ahk", "autohotkey", "ah2" },
-                init_options = {
-                    locale = "en-us",
-                    InterpreterPath = "/mnt/c/Program Files/AutoHotkey/v2/AutoHotkey.exe",
-                    -- Same as initializationOptions for Sublime Text4, convert json literal to lua dictionary literal
-                },
-                single_file_support = true,
-                flags = { debounce_text_changes = 500 },
-                capabilities = capabilities,
-                on_attach = on_attach,
-            }
             local configs = require("lspconfig.configs")
-            configs["ahk2"] = { default_config = ahk2_configs }
+            configs["ahk2"] = {
+                default_config = {
+                    autostart = true,
+                    cmd = {
+                        "node",
+                        vim.fn.expand("$HOME/.config/nvim/languages/vscode-autohotkey2-lsp/server/dist/server.js"),
+                        "--stdio",
+                    },
+                    filetypes = { "ahk", "autohotkey", "ah2" },
+                    init_options = {
+                        locale = "en-us",
+                        InterpreterPath = "/mnt/c/Program Files/AutoHotkey/v2/AutoHotkey.exe",
+                        -- Same as initializationOptions for Sublime Text4, convert json literal to lua dictionary literal
+                    },
+                    single_file_support = true,
+                    flags = { debounce_text_changes = 500 },
+                    capabilities = capabilities,
+                    on_attach = on_attach,
+                },
+            }
             local nvim_lsp = require("lspconfig")
             nvim_lsp.ahk2.setup({})
 
