@@ -140,3 +140,5 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Quickfix list next", silent = true })
 vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Quickfix list prev", silent = true })
+
+vim.keymap.set("n", "<leader>t", ":UndotreeToggle<CR>", { desc = "Toggle Undotree", silent = true })
