@@ -1,9 +1,16 @@
+vim.api.nvim_create_autocmd("BufReadPost", {
+    pattern = "*.env.local",
+    callback = function()
+        vim.bo.filetype = "sh"
+    end,
+})
+
 -- vim.o.guicursor = ""
 -- Set highlight on search
 vim.o.hlsearch = false
 
 -- Relative Line Numbers
-vim.o.nu = false
+vim.o.nu = true
 vim.o.rnu = true
 
 -- Enable mouse mode
@@ -71,3 +78,5 @@ vim.opt.inccommand = "split"
 
 -- Allow me to use dd in quickfixlist
 vim.o.ma = true
+
+vim.opt.winborder = "double" -- https://neovim.io/doc/user/options.html#'winborder'
