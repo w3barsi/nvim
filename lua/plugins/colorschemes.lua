@@ -90,9 +90,16 @@ return {
         name = "rose-pine",
         config = function()
             require("rose-pine").setup({
+                styles = {
+                    italic = false,
+                },
                 highlight_groups = {
                     YankHighlight = { fg = "base", bg = "love" },
                     CodeiumSuggestion = { fg = "#7AA67A" },
+                    ["@string.bash"] = { fg = "#7AA67A" },
+                    LspReferenceText = { bg = "#000000" },
+                    LspReferenceRead = { bg = "#000000" },
+                    LspReferenceWrite = { bg = "#000000" },
                 },
             })
         end,
