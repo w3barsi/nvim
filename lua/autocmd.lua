@@ -1,3 +1,10 @@
+-- treat .env.local as shell script
+vim.api.nvim_create_autocmd("BufReadPost", {
+    pattern = ".env.*",
+    callback = function()
+        vim.bo.filetype = "sh"
+    end,
+})
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
