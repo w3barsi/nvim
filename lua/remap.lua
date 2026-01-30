@@ -69,14 +69,14 @@ vim.keymap.set("n", "}", "}zz", opts)
 vim.keymap.set("n", "G", "Gzz", opts)
 vim.keymap.set("n", "gg", "ggzz", opts)
 vim.keymap.set("n", "<C-o>", "<C-o>zz", opts)
-vim.keymap.set("n", "<C-i>", "<C-i>zz", opts)
+-- vim.keymap.set("n", "<C-i>", "<C-i>zz", opts)
 vim.keymap.set("n", "N", "Nzz", opts)
 vim.keymap.set("n", "n", "nzz", opts)
 
 -- Paste without changing clipboard buffer
 vim.keymap.set("x", "<leader>p", '"_dP', { silent = true })
 
-vim.keymap.set("n", "<tab>", "<cmd>w! <CR>")
+-- vim.keymap.set("n", "<tab>", "<cmd>w! <CR>")
 
 -- Folding Remaps
 
@@ -116,7 +116,17 @@ vim.keymap.set("n", ",r", function()
     harpoon:list():select(4)
 end, { desc = "Harpoon Buffer 4" })
 
-vim.keymap.set("n", "``", ":e .env<CR>", { desc = "Open .env file" })
+local function open_env_file()
+    if vim.fn.filereadable('.env') == 1 then
+        vim.cmd('e .env')
+    elseif vim.fn.filereadable('.env.local') == 1 then
+        vim.cmd('e .env.local')
+    else
+        vim.notify('env does not exist', vim.log.levels.WARN)
+    end
+end
+
+vim.keymap.set("n", "``", open_env_file, { desc = "Open .env file" })
 
 -- -- Open Oil to components dir
 vim.keymap.set(
