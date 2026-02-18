@@ -177,6 +177,7 @@ return {
                 },
             })
             local lspconfig = require("lspconfig")
+            local tw_highlight = require("tailwind-highlight")
 
             mason_lspconfig.setup_handlers({
                 function(server_name)
@@ -213,21 +214,33 @@ return {
                 ["biome"] = function()
                     lspconfig.biome.setup({ capabilities = capabilities, on_attach = biome_on_attach })
                 end,
-            })
-
-            -- Add highlights to tailwind color classes
-            local tw_highlight = require("tailwind-highlight")
-
-            lspconfig.tailwindcss.setup({
-                on_attach = function(client, bufnr)
-                    -- rest of you config
-                    tw_highlight.setup(client, bufnr, {
-                        single_column = false,
-                        mode = "background",
-                        debounce = 200,
+                ["tailwindcss"] = function()
+                    lspconfig.tailwindcss.setup({
+                        settings = {
+                            tailwindCSS = {
+                                classAttributes = {
+                                    "class",
+                                    "className",
+                                    "class\\w*",
+                                    "className\\w*",
+                                    "\\w+Class",
+                                    "\\w+ClassName",
+                                },
+                            },
+                        },
+                        on_attach = function(client, bufnr)
+                            -- rest of you config
+                            tw_highlight.setup(client, bufnr, {
+                                single_column = false,
+                                mode = "background",
+                                debounce = 200,
+                            })
+                        end,
                     })
                 end,
             })
+
+            -- Add highlights to tailwind color classes
 
             require("lsp_signature").setup({
                 floating_window = false,
