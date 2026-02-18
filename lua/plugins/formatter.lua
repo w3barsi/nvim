@@ -43,7 +43,7 @@ return { -- Autoformat
             typescript = webdev_options,
             javascriptreact = webdev_options,
             typescriptreact = webdev_options,
-            svelte = { "prettierd" },
+            svelte = { "prettierd", "prettier" },
             css = { "prettierd" },
             html = { "prettierd" },
             json = { "prettierd" },
