@@ -59,6 +59,10 @@ return {
         end,
         lazy = false,
         opts = {
+            debug = {
+                enabled = true,
+                show_scores = true,
+            },
             keymaps = {
                 move_up = { "<Up>", "<C-k>", "<Tab>" }, -- Multiple bindings supported
                 move_down = { "<Down>", "<C-j>", "<S-Tab>" },
