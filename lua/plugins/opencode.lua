@@ -30,6 +30,7 @@ return {
     config = function()
         ---@type opencode.Opts
         vim.g.opencode_opts = {
+            port = 8080,
             -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on the type or field.
         }
 
