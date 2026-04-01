@@ -45,8 +45,12 @@ vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.keymap.set("v", "<", "<gv", { silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "[d", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
@@ -117,12 +121,15 @@ vim.keymap.set("n", ",r", function()
 end, { desc = "Harpoon Buffer 4" })
 
 local function open_env_file()
-    if vim.fn.filereadable('.env') == 1 then
-        vim.cmd('e .env')
-    elseif vim.fn.filereadable('.env.local') == 1 then
-        vim.cmd('e .env.local')
+    local bufname = vim.fn.fnamemodify(vim.fn.bufname(), ":t")
+    if bufname == ".env" or bufname == ".env.local" then
+        vim.cmd("normal! <C-o>")
+    elseif vim.fn.filereadable(".env") == 1 then
+        vim.cmd("e .env")
+    elseif vim.fn.filereadable(".env.local") == 1 then
+        vim.cmd("e .env.local")
     else
-        vim.notify('env does not exist', vim.log.levels.WARN)
+        vim.notify("env does not exist", vim.log.levels.WARN)
     end
 end
 
@@ -152,3 +159,4 @@ vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Quickfix list next", silent = 
 vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Quickfix list prev", silent = true })
 
 vim.keymap.set("n", "<leader>t", ":UndotreeToggle<CR>", { desc = "Toggle Undotree", silent = true })
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restarting LSP Server", silent = true })
