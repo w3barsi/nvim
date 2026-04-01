@@ -1,76 +1,85 @@
-local webdev_options = {
-    -- "prettier",
-    "prettierd",
-    stop_after_first = true,
-}
-
-return { -- Autoformat
-    "stevearc/conform.nvim",
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
-    keys = {
-        {
-            "gf",
-            function()
-                require("conform").format({ async = true, lsp_format = "fallback" })
+---@type LazySpec
+---@module 'lazy'
+return {
+    {
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo" },
+        keys = {
+            {
+                "gf",
+                function()
+                    require("conform").format({ async = true, lsp_format = "fallback" })
+                end,
+                mode = "",
+                desc = "[F]ormat buffer",
+            },
+        },
+        ---@module 'conform'
+        ---@type conform.setupOpts
+        opts = {
+            notify_on_error = false,
+            default_format_opts = {
+                async = true,
+                timeout_ms = 500,
+                lsp_format = "fallback",
+            },
+            format_after_save = function(buffer_number)
+                if vim.g.disable_autoformat or vim.b[buffer_number].disable_autoformat then
+                    return
+                end
+                return {
+                    async = true,
+                    timeout_ms = 500,
+                    lsp_format = "fallback",
+                }
             end,
-            mode = "",
-            desc = "[F]ormat buffer",
+            formatters_by_ft = {
+                astro = { "oxfmt", "biome", "prettierd", stop_after_first = true },
+                javascript = { "oxfmt", "biome", "prettierd", stop_after_first = true },
+                typescript = { "oxfmt", "biome", "prettierd", stop_after_first = true },
+                typescriptreact = { "oxfmt", "biome", "prettierd", stop_after_first = true },
+                svelte = { "oxfmt", "prettierd", stop_after_first = true },
+                lua = { "stylua" },
+            },
+            formatters = {
+                oxfmt = {
+                    condition = function(_, ctx)
+                        return vim.fs.find({ ".oxfmtrc.json", ".oxfmtrc.jsonc" }, {
+                            path = ctx.filename,
+                            upward = true,
+                            stop = vim.uv.os_homedir(),
+                        })[1] ~= nil
+                    end,
+                },
+                biome = {
+                    condition = function(_, ctx)
+                        return vim.fs.find({ "biome.json", "biome.jsonc" }, {
+                            path = ctx.filename,
+                            upward = true,
+                            stop = vim.uv.os_homedir(),
+                        })[1] ~= nil
+                    end,
+                },
+                prettierd = {
+                    condition = function(_, ctx)
+                        return vim.fs.find({
+                            ".prettierrc",
+                            ".prettierrc.json",
+                            ".prettierrc.js",
+                            ".prettierrc.cjs",
+                            ".prettierrc.mjs",
+                            "prettier.config.js",
+                            "prettier.config.cjs",
+                            "prettier.config.mjs",
+                        }, {
+                            path = ctx.filename,
+                            upward = true,
+                            stop = vim.uv.os_homedir(),
+                        })[1] ~= nil
+                    end,
+                },
+            },
         },
     },
-    opts = {
-        -- notify_on_error = false,
-        -- format_on_save = function(bufnr)
-        --     -- Disable "format_on_save lsp_fallback" for languages that don't
-        --     -- have a well standardized coding style. You can add additional
-        --     -- languages here or re-enable it for the disabled ones.
-        --     local disable_filetypes = { c = true, cpp = true }
-        --     local lsp_format_opt
-        --     if disable_filetypes[vim.bo[bufnr].filetype] then
-        --         lsp_format_opt = 'never'
-        --     else
-        --         lsp_format_opt = 'fallback'
-        --     end
-        --     return {
-        --         timeout_ms = 500,
-        --         lsp_format = lsp_format_opt,
-        --     }
-        -- end,
-        formatters_by_ft = {
-            lua = { "stylua" },
-            astro = { "prettierd" },
-            javascript = webdev_options,
-            typescript = webdev_options,
-            javascriptreact = webdev_options,
-            typescriptreact = webdev_options,
-            svelte = { "prettierd", "prettier" },
-            css = { "prettierd" },
-            html = { "prettierd" },
-            json = { "prettierd" },
-            yaml = { "prettierd" },
-            markdown = { "prettierd" },
-            graphql = { "prettierd" },
-            sh = { "shfmt", "shellharden" },
-            bash = { "shfmt", "shellharden" },
-            -- Conform can also run multiple formatters sequentially
-            -- python = { "isort", "black" },
-            --
-            -- You can use 'stop_after_first' to run the first available formatter from the list
-            -- javascript = { "prettier", "prettier", stop_after_first = true },
-        },
-        format_on_save = {
-            timeout_ms = 500,
-            lsp_format = "fallback",
-        },
-    },
-    --
-    -- {
-    --     'laytan/tailwind-sorter.nvim',
-    --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
-    --     build = 'cd formatter && npm ci && npm run build',
-    --     config = true,
-    --     opts = {
-    --         on_save_enabled = true
-    --     }
-    -- },
 }

@@ -1,25 +1,14 @@
-vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*.env.local",
-    callback = function()
-        vim.bo.filetype = "sh"
-    end,
-})
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = true
 
--- vim.o.guicursor = ""
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Relative Line Numbers
-vim.o.nu = true
-vim.o.rnu = true
-
--- Enable mouse mode
+vim.o.number = true
 vim.o.mouse = "a"
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
+-- Don't show the mode, since it's already in the status line
+vim.o.showmode = false
+
 vim.schedule(function()
     vim.o.clipboard = "unnamedplus"
 end)
@@ -27,56 +16,52 @@ end)
 -- Enable break indent
 vim.o.breakindent = true
 
--- Save undo history
+-- Enable undo/redo changes even after closing and reopening a file
 vim.o.undofile = true
 
--- Case-insensitive searching UNLESS \C or capital in search
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = "yes"
+vim.o.signcolumn = "yes"
 
 -- Decrease update time
 vim.o.updatetime = 250
+
+-- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = "menu,menuone,noselect"
-
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
-
-vim.o.wrap = false
-vim.o.linebreak = true
-vim.o.breakindent = true
-
-vim.o.colorcolumn = "80"
-
+-- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
 
-vim.o.swapfile = false
-
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
-
--- Highlights current line
-vim.o.cursorline = true
-
--- Stops redraw using macros
-vim.o.lazyredraw = false
-
--- Set completion menu height
-vim.o.pumheight = 10
-
--- Disabled commenting on new line
-vim.cmd("autocmd BufEnter * set formatoptions-=cro")
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+--
+--  Notice listchars is set using `vim.opt` instead of `vim.o`.
+--  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
+--   See `:help lua-options`
+--   and `:help lua-guide-options`
+vim.o.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+vim.o.inccommand = "split"
 
--- Allow me to use dd in quickfixlist
-vim.o.ma = true
+-- Show which line your cursor is on
+vim.o.cursorline = true
 
-vim.opt.winborder = "double" -- https://neovim.io/doc/user/options.html#'winborder'
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.o.scrolloff = 10
+
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.o.confirm = true
+
+vim.opt.winborder = "double"
+
+--wezterm redraw fix
+vim.opt.termsync = false
