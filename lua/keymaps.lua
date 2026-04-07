@@ -140,3 +140,21 @@ vim.keymap.set("n", "[q", ":cprev<CR>zz", { desc = "Quickfix list prev", silent 
 
 vim.keymap.set("n", "<leader>t", ":UndotreeToggle<CR>", { desc = "Toggle Undotree", silent = true })
 vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restarting LSP Server", silent = true })
+
+vim.keymap.set({ "n", "x", "o" }, "<enter>", function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+        require("vim.treesitter._select").select_parent(vim.v.count1)
+    else
+        vim.lsp.buf.selection_range(vim.v.count1)
+    end
+end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
+
+vim.keymap.set({ "n", "x", "o" }, "<bs>", function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+        require("vim.treesitter._select").select_child(vim.v.count1)
+    else
+        vim.lsp.buf.selection_range(-vim.v.count1)
+    end
+end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
+vim.keymap.set("n", "\\", "<cmd>w<cr>")
