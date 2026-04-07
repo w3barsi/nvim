@@ -31,7 +31,7 @@ return {
                     vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
                 map("K", function()
-                    return vim.lsp.buf.hover({ border = "rounded" })
+                    return vim.lsp.buf.hover({ border = "double" })
                 end, "Hover")
                 map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
                 map("gca", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })

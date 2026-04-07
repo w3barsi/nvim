@@ -44,6 +44,7 @@ return {
                         ".git/*",
                         "convex/_generated",
                     },
+                    borderchars = { "═", "║", "═", "║", "╔", "╗", "╝", "╚" },
                 },
             })
             pcall(require("telescope").load_extension, "fzf")
@@ -98,10 +99,10 @@ return {
         ---@type oil.SetupOpts
         opts = {
             confirmation = {
-                border = "rounded",
+                border = "double",
             },
             float = {
-                border = "rounded",
+                border = "double",
             },
             default_file_explorer = true,
             keymaps = {

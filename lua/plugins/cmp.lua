@@ -103,7 +103,7 @@ return { -- Autocompletion
                 show_on_insert_on_trigger_character = false,
             },
             window = {
-                border = "rounded",
+                border = "double",
                 show_documentation = true,
             },
         },
@@ -113,7 +113,7 @@ return { -- Autocompletion
                 show_on_trigger_character = false,
             },
             menu = {
-                border = "rounded",
+                border = "double",
                 max_height = 10,
                 draw = {
                     columns = {
@@ -142,7 +142,7 @@ return { -- Autocompletion
             documentation = {
                 auto_show = true,
                 window = {
-                    border = "rounded",
+                    border = "double",
                 },
             },
             ghost_text = {
