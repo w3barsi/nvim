@@ -61,15 +61,6 @@ return { -- Highlight, edit, and navigate code
             indent = { enable = true },
             autopairs = { enable = true },
             autotag = { enable = true },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<enter>",
-                    node_incremental = "<enter>",
-                    scope_incremental = "<c-s>",
-                    node_decremental = "<bs>",
-                },
-            },
         })
     end,
 }
