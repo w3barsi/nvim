@@ -159,4 +159,5 @@ vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Quickfix list next", silent = 
 vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Quickfix list prev", silent = true })
 
 vim.keymap.set("n", "<leader>t", ":UndotreeToggle<CR>", { desc = "Toggle Undotree", silent = true })
-vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restarting LSP Server", silent = true })
+vim.keymap.set("n", "<leader>lr", ":lsp restart<CR>", { desc = "Restarting LSP Server", silent = true })
+vim.keymap.set("n", "<leader>r", ":restart<CR>", { desc = "Restarting LSP Server", silent = true })

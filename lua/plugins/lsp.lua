@@ -81,6 +81,7 @@ return {
             oxlint = {
                 root_markers = { ".oxlint.json" },
             },
+            autohotkey_lsp = {},
             tailwindcss = {
                 filetypes = { "typescriptreact", "javascriptreact", "html", "svelte", "astro" },
                 settings = {

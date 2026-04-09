@@ -139,7 +139,7 @@ vim.keymap.set("n", "]q", ":cnext<CR>zz", { desc = "Quickfix list next", silent 
 vim.keymap.set("n", "[q", ":cprev<CR>zz", { desc = "Quickfix list prev", silent = true })
 
 vim.keymap.set("n", "<leader>t", ":UndotreeToggle<CR>", { desc = "Toggle Undotree", silent = true })
-vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restarting LSP Server", silent = true })
+vim.keymap.set("n", "<leader>lr", ":lsp restart<CR>", { desc = "Restarting LSP Server", silent = true })
 
 vim.keymap.set({ "n", "x", "o" }, "<enter>", function()
     if vim.treesitter.get_parser(nil, nil, { error = false }) then
@@ -158,3 +158,13 @@ vim.keymap.set({ "n", "x", "o" }, "<bs>", function()
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
 
 vim.keymap.set("n", "\\", "<cmd>w<cr>")
+
+-- Neocodeium keymaps
+
+vim.keymap.set("i", "<C-\\>", require("neocodeium").accept)
+vim.keymap.set("i", "<A-[>", function()
+    require("neocodeium").cycle(-1)
+end)
+vim.keymap.set("i", "<A-]>", function()
+    require("neocodeium").cycle(1)
+end)
