@@ -17,8 +17,6 @@ return {
         -- Maps LSP server names between nvim-lspconfig and Mason package names.
         "mason-org/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        "yioneko/nvim-vtsls",
-
         -- Useful status updates for LSP.
         { "j-hui/fidget.nvim", opts = {} },
     },
@@ -98,7 +96,41 @@ return {
                 },
             },
             stylua = {}, -- Used to format Lua code
-            vtsls = {},
+            vtsls = {
+                settings = {
+                    complete_function_calls = true,
+                    vtsls = {
+                        autoUseWorkspaceTsdk = true,
+                    },
+                    typescript = {
+                        updateImportsOnFileMove = { enabled = "always" },
+                        suggest = {
+                            completeFunctionCalls = true,
+                        },
+                        preferences = {
+                            importModuleSpecifier = "shortest",
+                            importModuleSpecifierEnding = "minimal",
+                            includePackageJsonAutoImports = "on",
+                        },
+                        inlayHints = {
+                            parameterNames = { enabled = "literals" },
+                            parameterTypes = { enabled = true },
+                            variableTypes = { enabled = false },
+                            propertyDeclarationTypes = { enabled = true },
+                            functionLikeReturnTypes = { enabled = true },
+                            enumMemberValues = { enabled = true },
+                        },
+                    },
+                    javascript = {
+                        updateImportsOnFileMove = { enabled = "always" },
+                        preferences = {
+                            importModuleSpecifier = "shortest",
+                            importModuleSpecifierEnding = "minimal",
+                            includePackageJsonAutoImports = "on",
+                        },
+                    },
+                },
+            },
             -- Special Lua Config, as recommended by neovim help docs
             lua_ls = {
                 on_init = function(client)

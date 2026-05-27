@@ -65,7 +65,7 @@ return { -- Autocompletion
             ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
             ["<Tab>"] = { "select_next", "fallback" },
             ["<S-Tab>"] = { "select_prev", "fallback" },
-            ["<CR>"] = { "accept", "fallback" },
+            ["<CR>"] = { "select_and_accept", "fallback" },
             ["<C-l>"] = { "snippet_forward", "fallback" },
             ["<C-h>"] = { "snippet_backward", "fallback" },
         },
@@ -150,7 +150,7 @@ return { -- Autocompletion
             },
             list = {
                 selection = {
-                    preselect = false,
+                    preselect = true,
                 },
             },
             accept = {

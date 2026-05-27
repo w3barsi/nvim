@@ -168,3 +168,6 @@ end)
 vim.keymap.set("i", "<A-]>", function()
     require("neocodeium").cycle(1)
 end)
+
+-- Open oil.nvim to src/components/
+vim.keymap.set("n", "<leader>c", "<cmd>Oil src/components/<cr>")

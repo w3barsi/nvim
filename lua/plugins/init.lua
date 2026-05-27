@@ -53,27 +53,6 @@ return {
     },
 
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            require("rose-pine").setup({
-                styles = {
-                    italic = false,
-                },
-                highlight_groups = {
-                    YankHighlight = { fg = "base", bg = "love" },
-                    CodeiumSuggestion = { fg = "#7AA67A" },
-                    ["@string.bash"] = { fg = "#7AA67A" },
-                    LspReferenceText = { bg = "#000000" },
-                    LspReferenceRead = { bg = "#000000" },
-                    LspReferenceWrite = { bg = "#000000" },
-                },
-            })
-            vim.cmd.colorscheme("rose-pine-main")
-        end,
-    },
-
-    {
         "folke/todo-comments.nvim",
         event = "VimEnter",
         dependencies = { "nvim-lua/plenary.nvim" },
